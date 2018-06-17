@@ -44,11 +44,8 @@ yarn start
 # build electron application for production
 yarn run build
 
-or
-# build & run electron application for dev
-rm -rf build (optional)
-yarn run build:dir
-./build/linux-unpacked/JaC2
+# build server application for production
+yarn run build:server
 
 # run unit & end-to-end tests
 yarn test
@@ -57,7 +54,16 @@ yarn test
 # lint all JS/Vue component files in `src/`
 yarn run lint
 
+# run after server and electron application builds
+./client/build/linux-unpacked/JaC2
+node server/dist/server.bundle.js
+
 ```
+
+### Next Steps
+- Docker support
+- Figure out packaging for each target: Linux, Mac, Windows
+- Learn more about vue
 
 ### Recommended VS Code Plugins
 - Vetur
