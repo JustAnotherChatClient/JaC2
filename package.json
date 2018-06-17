@@ -15,14 +15,14 @@
     "dev": "node client/.electron-vue/dev-runner.js",
     "start": "npm-run-all --parallel dev server",
     "db": "mongod --dbpath ./data/db",
-    "e2e": "npm run pack && mocha test/e2e",
-    "lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter src test",
-    "lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix src test",
+    "e2e": "npm run pack && mocha client/test/e2e",
+    "lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter client/src server client/test",
+    "lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix client/src server client/test",
     "pack": "npm run pack:main && npm run pack:renderer",
     "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config client/.electron-vue/webpack.main.config.js",
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config client/.electron-vue/webpack.renderer.config.js",
     "test": "npm run unit && npm run e2e",
-    "unit": "karma start test/unit/karma.conf.js",
+    "unit": "karma start client/test/unit/karma.conf.js",
     "postinstall": "npm run lint:fix"
   },
   "build": {
