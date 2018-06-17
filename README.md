@@ -50,7 +50,6 @@ yarn run build:server
 # run unit & end-to-end tests
 yarn test
 
-
 # lint all JS/Vue component files in `src/`
 yarn run lint
 
@@ -60,7 +59,17 @@ node server/dist/server.bundle.js
 
 ```
 
+### Git Strategy
+- branch develop into feature branch
+- submit Pull Request (PR) for feature branch into develop
+- review PR then accept/merge
+- deploy develop to dev environment
+- repeat until major release is ready
+- merge develop in master
+- deploy master to prod environment
+
 ### Next Steps
+- add separate client configuration for dev and prod environments
 - Docker support
 - Figure out packaging for each target: Linux, Mac, Windows
 - Learn more about vue
