@@ -19,7 +19,7 @@ sudo apt-get update
 sudo apt-get install -y mongodb-org
 # run db
 cd <project dir>
-yarn run db
+yarn db
 ```
 
 ### Using Yarn
@@ -71,15 +71,21 @@ node server/dist/server.bundle.js
 - deploy master to prod environment
 
 ### Next Steps
-- add separate client configuration for dev and prod environments
+- Add separate client configuration for dev and prod environments
+- Add separate server configuration for prod environment
 - Docker support
 - Figure out packaging for each target: Linux, Mac, Windows
 - Learn more about vue
+- Begin deploying the server to AWS
+
 
 ### Recommended VS Code Plugins
 - Vetur
 - vscode-icons
 - ESLint
+- GitLens
+- Node.js Modules Intellisense
+
 ---
 
 This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).

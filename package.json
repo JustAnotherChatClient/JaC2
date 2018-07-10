@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "author": "",
   "description": "An electron-vue project",
-  "license": null,
+  "license": "Private",
   "main": "./client/dist/electron/main.js",
   "scripts": {
     "build": "node client/.electron-vue/build.js && electron-builder",
