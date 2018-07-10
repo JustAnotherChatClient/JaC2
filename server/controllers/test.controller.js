@@ -1,9 +1,8 @@
 import Test from '../models/test'
 
 const testPost = (req, res) => {
-  const {text} = req.body
-  const test = new Test({text})
-  Test.addTest(test)
+  const { text } = req.body
+  Test.addTest({ text })
     .then(newTest => {
       res.json({test: newTest})
     })

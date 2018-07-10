@@ -13,8 +13,8 @@ import mongoose from 'mongoose'
 // import global config
 import config from 'config'
 
-// import API routes
-import apiRoutes from './routes/api/routes'
+// import routes
+import router from './routes/router'
 
 // create server singleton
 const server = new Express()
@@ -64,7 +64,7 @@ server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(compression())
 
-server.use('/api', apiRoutes())
+server.use(router())
 
 // TODO setup jwt support
 /*
