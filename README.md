@@ -32,31 +32,33 @@ yarn add <name>
 yarn add -D <name>
 ```
 
-#### Build Setup
+#### Commands
 
-``` bash
+```bash
 # install dependencies
 yarn
 
-# serve with hot reload at localhost:9080
+# serve with hot reload at localhost:3000
 yarn start
 
 # build electron application for production
-yarn run build
+yarn build
 
 # build server application for production
-yarn run build:server
+yarn build:server
 
 # run unit & end-to-end tests
 yarn test
 
 # lint all JS/Vue component files in `src/`
-yarn run lint
+yarn lint
+
+# remove and reinstall dependencies
+yarn slate
 
 # run after server and electron application builds
 ./client/build/linux-unpacked/JaC2
 node server/dist/server.bundle.js
-
 ```
 
 ### Git Strategy

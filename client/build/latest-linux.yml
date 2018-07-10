@@ -1,9 +1,0 @@
-version: 0.0.0
-files:
-  - url: just-another-chat-client-0.0.0-x86_64.AppImage
-    sha512: 0i9OGgz6G6ld9Lx7WZAsGxMCBCLQGqv8Ll//0+0mFMG73BepBY8eEJrOKmBTOuw0RbLA3QqCjknKmJbCUkjJ9w==
-    size: 52318376
-    blockMapSize: 55788
-path: just-another-chat-client-0.0.0-x86_64.AppImage
-sha512: 0i9OGgz6G6ld9Lx7WZAsGxMCBCLQGqv8Ll//0+0mFMG73BepBY8eEJrOKmBTOuw0RbLA3QqCjknKmJbCUkjJ9w==
-releaseDate: '2018-06-17T19:04:30.506Z'

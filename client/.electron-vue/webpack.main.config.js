@@ -46,7 +46,7 @@ let mainConfig = {
   output: {
     filename: '[name].js',
     libraryTarget: 'commonjs2',
-    path: path.resolve(__dirname, '../', 'client/dist/electron')
+    path: path.resolve(__dirname, '../', 'dist/electron')
   },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin()
@@ -63,7 +63,7 @@ let mainConfig = {
 if (process.env.NODE_ENV !== 'production') {
   mainConfig.plugins.push(
     new webpack.DefinePlugin({
-      '__static': `"${path.resolve(__dirname, '../', 'client/static').replace(/\\/g, '\\\\')}"`
+      '__static': `"${path.resolve(__dirname, '../', 'static').replace(/\\/g, '\\\\')}"`
     })
   )
 }
