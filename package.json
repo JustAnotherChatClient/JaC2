@@ -14,7 +14,7 @@
     "server": "NODE_ENV=development BABEL_ENV=server nodemon server/index.js",
     "dev": "node client/.electron-vue/dev-runner.js",
     "start": "npm-run-all --parallel dev server",
-    "start:server": "node server/dist/server.bundle.js",
+    "start:prod": "NODE_ENV=production node index.js",
     "db": "mongod --dbpath ./data/db",
     "e2e": "npm run pack && mocha client/test/e2e",
     "lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter client/src server client/test",
