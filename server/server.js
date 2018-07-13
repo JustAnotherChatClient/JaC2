@@ -66,6 +66,11 @@ server.use(compression())
 
 server.use(router())
 
+server.use((err, req, res, next) => {
+  if (err) res.status(500).json({ status: 500, message: 'Internal Server Error' })
+  res.status(404).json({ status: 404, message: 'Not Found' })
+})
+
 // TODO setup jwt support
 /*
 server.use(jwt({

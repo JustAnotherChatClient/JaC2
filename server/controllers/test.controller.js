@@ -4,7 +4,9 @@ const testPost = (req, res) => {
   const { text } = req.body
   Test.addTest({ text })
     .then(newTest => {
-      res.json({test: newTest})
+      res.statu(200).json({test: newTest})
+    }).catch(err => {
+      res.status(500).json({status: 500, message: err.message})
     })
 }
 
