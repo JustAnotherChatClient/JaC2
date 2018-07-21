@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "author": "",
   "description": "An electron-vue project",
-  "license": null,
+  "license": "Private",
   "main": "./client/dist/electron/main.js",
   "scripts": {
     "build": "node client/.electron-vue/build.js && electron-builder",
@@ -14,6 +14,7 @@
     "server": "NODE_ENV=development BABEL_ENV=server nodemon server/index.js",
     "dev": "node client/.electron-vue/dev-runner.js",
     "start": "npm-run-all --parallel dev server",
+    "start:prod": "NODE_ENV=production node index.js",
     "db": "mongod --dbpath ./data/db",
     "e2e": "npm run pack && mocha client/test/e2e",
     "lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter client/src server client/test",
@@ -23,6 +24,7 @@
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config client/.electron-vue/webpack.renderer.config.js",
     "test": "npm run unit && npm run e2e",
     "unit": "karma start client/test/unit/karma.conf.js",
+    "slate": "rimraf node_modules && yarn",
     "postinstall": "npm run lint:fix"
   },
   "build": {
@@ -126,6 +128,7 @@
     "nodemon": "^1.17.5",
     "npm-run-all": "^4.1.3",
     "require-dir": "^0.3.0",
+    "rimraf": "^2.6.2",
     "spectron": "^3.7.1",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",

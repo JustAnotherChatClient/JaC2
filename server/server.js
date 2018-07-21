@@ -13,8 +13,8 @@ import mongoose from 'mongoose'
 // import global config
 import config from 'config'
 
-// import API routes
-import apiRoutes from './routes/api/routes'
+// import routes
+import router from './routes/router'
 
 // create server singleton
 const server = new Express()
@@ -64,7 +64,12 @@ server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(compression())
 
-server.use('/api', apiRoutes())
+server.use(router())
+
+server.use((err, req, res, next) => {
+  if (err) res.status(500).json({ status: 500, message: 'Internal Server Error' })
+  res.status(404).json({ status: 404, message: 'Not Found' })
+})
 
 // TODO setup jwt support
 /*

@@ -7,6 +7,13 @@
 ##### Read the docs: https://simulatedgreg.gitbooks.io/electron-vue
 
 ```bash
+# install node.js
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo apt-get install -y build-essential
+```
+
+```bash
 # install yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
@@ -19,7 +26,7 @@ sudo apt-get update
 sudo apt-get install -y mongodb-org
 # run db
 cd <project dir>
-yarn run db
+yarn db
 ```
 
 ### Using Yarn
@@ -32,31 +39,33 @@ yarn add <name>
 yarn add -D <name>
 ```
 
-#### Build Setup
+#### Commands
 
-``` bash
+```bash
 # install dependencies
 yarn
 
-# serve with hot reload at localhost:9080
+# serve with hot reload at localhost:3000
 yarn start
 
 # build electron application for production
-yarn run build
+yarn build
 
 # build server application for production
-yarn run build:server
+yarn build:server
 
 # run unit & end-to-end tests
 yarn test
 
 # lint all JS/Vue component files in `src/`
-yarn run lint
+yarn lint
+
+# remove and reinstall dependencies
+yarn slate
 
 # run after server and electron application builds
 ./client/build/linux-unpacked/JaC2
 node server/dist/server.bundle.js
-
 ```
 
 ### Git Strategy
@@ -69,15 +78,21 @@ node server/dist/server.bundle.js
 - deploy master to prod environment
 
 ### Next Steps
-- add separate client configuration for dev and prod environments
+- Add separate client configuration for dev and prod environments
+- Add separate server configuration for prod environment
 - Docker support
 - Figure out packaging for each target: Linux, Mac, Windows
 - Learn more about vue
+- Begin deploying the server to AWS
+
 
 ### Recommended VS Code Plugins
 - Vetur
 - vscode-icons
 - ESLint
+- GitLens
+- Node.js Modules Intellisense
+
 ---
 
 This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
