@@ -13,7 +13,12 @@ export default new Router({
     {
       path: '/signup',
       name: 'signup-page',
-      component: require('@/components/SignupPage').default
+      component: require('@/components/SignUpPage').default
+    },
+    {
+      path: '/home',
+      name: 'home-page',
+      component: require('@/components/HomePage').default
     },
     {
       path: '*',
