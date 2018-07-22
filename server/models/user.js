@@ -12,7 +12,7 @@ let UserSchema = new Schema({
   lastLogin: Date,
   status: String,
   friend: [{
-    _id: {type: String, ref: 'User'},
+    _id: { type: String, ref: 'User' },
     isBlocked: Boolean
   }]
 
@@ -20,9 +20,18 @@ let UserSchema = new Schema({
 
 UserSchema.statics.addUser = (User) => {
   return new Promise((resolve, reject) => {
-    User.save((err, item) => {
+    User.save((err, user) => {
       if (err) reject(err)
-      else resolve(item)
+      else resolve(user)
+    })
+  })
+}
+
+UserSchema.statics.updateUser = (id, User) => {
+  return new Promise((resolve, reject) => {
+    User.findByIdAndUpdate(id, {$set: { firstName: User.firstName, lastName: User.lastName }}, { new: true }, function (err, user) {
+      if (err) reject(err)
+      else resolve(user)
     })
   })
 }
