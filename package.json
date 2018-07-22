@@ -65,6 +65,7 @@
     "axios": "^0.16.1",
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.3",
+    "bulma": "^0.7.1",
     "bunyan": "^1.8.12",
     "compression": "^1.7.2",
     "config": "^1.30.0",
