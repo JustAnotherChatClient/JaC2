@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 let ChannelSchema = new Schema({
   owner: { type: String, ref: 'User' },
   isActive: Boolean,
-  createDate: Date,
+  createDate: { type: Date, default: Date.now },
   name: String,
   members: [{
     _id: { type: String, ref: 'User' }
@@ -44,9 +44,9 @@ ChannelSchema.statics.disableChannel = (_id) => {
 
 ChannelSchema.statics.getAllChannels = () => {
   return new Promise((resolve, reject) => {
-    this.find((err, item) => {
+    this.find((err, channels) => {
       if (err) reject(err)
-      else resolve(item)
+      else resolve(channels)
     })
   })
 }
