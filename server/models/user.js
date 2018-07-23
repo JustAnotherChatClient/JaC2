@@ -11,7 +11,7 @@ let UserSchema = new Schema({
   createDate: Date,
   lastLogin: Date,
   status: String,
-  friend: [{
+  friends: [{
     _id: { type: String, ref: 'User' },
     isBlocked: Boolean
   }]
@@ -54,7 +54,14 @@ UserSchema.statics.getUser = (id, User) => {
   })
 }
 
-
+UserSchema.statics.getFriendsByUserId = (id, User) => {
+  return new Promise((resolve, reject) => {
+    User.findById(id, (err, user) => {
+      if (err) reject(err)
+      else resolve(user.friends)
+    })
+  })
+}
 
 const User = mongoose.model('User', UserSchema)
 export default User
