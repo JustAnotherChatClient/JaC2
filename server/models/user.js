@@ -11,8 +11,8 @@ let UserSchema = new Schema({
   createDate: Date,
   lastLogin: Date,
   status: String,
-  friend: [{
-    _id: {type: String, ref: 'User'},
+  friends: [{
+    _id: { type: String, ref: 'User' },
     isBlocked: Boolean
   }]
 
@@ -20,9 +20,63 @@ let UserSchema = new Schema({
 
 UserSchema.statics.addUser = (User) => {
   return new Promise((resolve, reject) => {
-    User.save((err, item) => {
+    User.save((err, user) => {
       if (err) reject(err)
-      else resolve(item)
+      else resolve(user)
+    })
+  })
+}
+
+UserSchema.statics.updateUser = (id, User) => {
+  return new Promise((resolve, reject) => {
+    User.findByIdAndUpdate(id, { $set: { firstName: User.firstName, lastName: User.lastName } }, { new: true }, function (err, user) {
+      if (err) reject(err)
+      else resolve(user)
+    })
+  })
+}
+
+UserSchema.statics.getAllUsers = (User) => {
+  return new Promise((resolve, reject) => {
+    User.find((err, users) => {
+      if (err) reject(err)
+      else resolve(users)
+    })
+  })
+}
+
+UserSchema.statics.getUser = (id, User) => {
+  return new Promise((resolve, reject) => {
+    User.findById(id, (err, user) => {
+      if (err) reject(err)
+      else resolve(user)
+    })
+  })
+}
+
+UserSchema.statics.getFriendsByUserId = (id, User) => {
+  return new Promise((resolve, reject) => {
+    User.findById(id, (err, user) => {
+      if (err) reject(err)
+      else resolve(user.friends)
+    })
+  })
+}
+
+UserSchema.statics.disableUser = (id, User) => {
+  return new Promise((resolve, reject) => {
+    User.findByIdAndUpdate(id, { $set: { isActive: false } }, { new: true }, function (err, user) {
+      if (err) reject(err)
+      else resolve(user)
+    })
+  })
+}
+
+UserSchema.statics.enableUser = (id, User) => {
+  return new Promise((resolve, reject) => {
+    User.findByIdAndUpdate(id, { $set: { isActive: true } }, { new: true }, function (err, user) {
+      if (err) reject(err)
+      else resolve(user)
     })
   })
 }
