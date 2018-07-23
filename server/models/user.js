@@ -38,7 +38,7 @@ UserSchema.statics.updateUser = (id, User) => {
 
 UserSchema.statics.getAllUsers = () => {
   return new Promise((resolve, reject) => {
-    this.find((err, users) => {
+    User.find((err, users) => {
       if (err) reject(err)
       else resolve(users)
     })
