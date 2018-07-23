@@ -1,7 +1,8 @@
 <template>
-  <div id="wrapper">
+  <div>
     <main>
-      <div class="left-side">
+      <div>
+        <router-link to="/"><button class="alt">Go Back</button></router-link>
         <div class="hero">
           <div class="hero-body">
             Welcome to JaC2!
@@ -9,9 +10,6 @@
         </div>
       </div>
       <div class="right-side">
-        <input type="text" placeholder="This is Kyle">
-        <input type="text" placeholder="Password">
-        <router-link to="/"><button class="alt">Go Back</button></router-link>
       </div>
     </main>
   </div>
@@ -42,7 +40,7 @@
         rgba(229, 229, 229, .9) 100%
       );
     height: 100vh;
-    padding: 60px 80px;
+    /*padding: 60px 80px;*/
     width: 100vw;
   }
 
