@@ -3,13 +3,11 @@ const Schema = mongoose.Schema
 
 let MessageSchema = new Schema({
   owner: { type: String, ref: 'User' },
-  createDate: Date,
+  createDate: { type: Date, default: Date.now },
   content: String,
   contentType: String,
   isActive: Boolean,
-  deletedBy: [{
-    _id: { type: String, ref: 'User' }
-  }]
+  deletedBy: { type: String, ref: 'User' }
 })
 
 MessageSchema.statics.addMessage = (message) => {
