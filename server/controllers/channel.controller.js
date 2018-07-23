@@ -1,7 +1,6 @@
 import Channel from '../models/channel'
 
 const newChannel = (req, res) => {
-  console.log(req.body)
   let channel = new Channel(req.body)
   Channel.addChannel(channel)
     .then(newChannel => {
