@@ -29,32 +29,32 @@ UserSchema.statics.addUser = (User) => {
 
 UserSchema.statics.updateUser = (id, User) => {
   return new Promise((resolve, reject) => {
-    User.findByIdAndUpdate(id, { $set: { firstName: User.firstName, lastName: User.lastName } }, { new: true }, function (err, user) {
+    User.findByIdAndUpdate(id, User, { new: true }, function (err, user) {
       if (err) reject(err)
       else resolve(user)
     })
   })
 }
 
-UserSchema.statics.getAllUsers = (User) => {
+UserSchema.statics.getAllUsers = () => {
   return new Promise((resolve, reject) => {
-    User.find((err, users) => {
+    this.find((err, users) => {
       if (err) reject(err)
       else resolve(users)
     })
   })
 }
 
-UserSchema.statics.getUser = (id, User) => {
+UserSchema.statics.getUser = (id) => {
   return new Promise((resolve, reject) => {
-    User.findById(id, (err, user) => {
+    this.findById(id, (err, user) => {
       if (err) reject(err)
       else resolve(user)
     })
   })
 }
 
-UserSchema.statics.getFriendsByUserId = (id, User) => {
+UserSchema.statics.getFriendsByUserId = (id) => {
   return new Promise((resolve, reject) => {
     User.findById(id, (err, user) => {
       if (err) reject(err)
@@ -63,18 +63,18 @@ UserSchema.statics.getFriendsByUserId = (id, User) => {
   })
 }
 
-UserSchema.statics.disableUser = (id, User) => {
+UserSchema.statics.disableUser = (id) => {
   return new Promise((resolve, reject) => {
-    User.findByIdAndUpdate(id, { $set: { isActive: false } }, { new: true }, function (err, user) {
+    this.findByIdAndUpdate(id, { $set: { isActive: false } }, { new: true }, (err, user) => {
       if (err) reject(err)
       else resolve(user)
     })
   })
 }
 
-UserSchema.statics.enableUser = (id, User) => {
+UserSchema.statics.enableUser = (id) => {
   return new Promise((resolve, reject) => {
-    User.findByIdAndUpdate(id, { $set: { isActive: true } }, { new: true }, function (err, user) {
+    this.findByIdAndUpdate(id, { $set: { isActive: true } }, { new: true }, (err, user) => {
       if (err) reject(err)
       else resolve(user)
     })
