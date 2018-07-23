@@ -33,36 +33,36 @@ ChannelSchema.statics.updateChannel = (_id, channel) => {
   })
 }
 
-ChannelSchema.statics.disableChannel = (_id, channel) => {
+ChannelSchema.statics.disableChannel = (_id) => {
   return new Promise((resolve, reject) => {
-    this.findByIdAndRemove(_id, channel, (err, item) => {
+    this.findByIdAndUpdate(_id, {isActive: false}, (err, item) => {
       if (err) reject(err)
       else resolve(item)
     })
   })
 }
 
-ChannelSchema.statics.getAllChannels = (channel) => {
+ChannelSchema.statics.getAllChannels = () => {
   return new Promise((resolve, reject) => {
-    this.find(channel, (err, item) => {
+    this.find((err, item) => {
       if (err) reject(err)
       else resolve(item)
     })
   })
 }
 
-ChannelSchema.statics.getChannelById = (_id, channel) => {
+ChannelSchema.statics.getChannelById = (_id) => {
   return new Promise((resolve, reject) => {
-    this.findOne(_id, (err, item) => {
+    this.findOne({_id}, (err, item) => {
       if (err) reject(err)
       else resolve(item)
     })
   })
 }
 
-ChannelSchema.statics.getChannelByOwner = (owner, channel) => {
+ChannelSchema.statics.getChannelByOwner = (owner) => {
   return new Promise((resolve, reject) => {
-    this.findOne(owner, (err, item) => {
+    this.findOne({owner}, (err, item) => {
       if (err) reject(err)
       else resolve(item)
     })
