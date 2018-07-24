@@ -68,6 +68,12 @@ yarn slate
 node server/dist/server.bundle.js
 ```
 
+#### Styling
+
+Bulma is available as a pure css framework.
+
+Docs are found here: https://bulma.io/documentation/
+
 ### Git Strategy
 - branch develop into feature branch
 - submit Pull Request (PR) for feature branch into develop
