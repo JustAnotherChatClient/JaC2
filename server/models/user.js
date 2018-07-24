@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let UserSchema = new Schema({
-  text: String,
+  userName: String,
   firstName: String,
   lastName: String,
   email: String,
@@ -47,7 +47,7 @@ UserSchema.statics.getAllUsers = () => {
 
 UserSchema.statics.getUser = (id) => {
   return new Promise((resolve, reject) => {
-    this.findById(id, (err, user) => {
+    User.findById(id, (err, user) => {
       if (err) reject(err)
       else resolve(user)
     })
