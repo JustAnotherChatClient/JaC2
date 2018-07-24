@@ -22,7 +22,7 @@ const getUsers = (req, res) => {
 
 const getUserById = (req, res) => {
   const { id } = req.params
-  User.getUser({ id })
+  User.getUser(id)
     .then(getUserById => {
       res.status(200).json({status: 200, data: getUserById, message: 'Ok'})
     }).catch(err => {
