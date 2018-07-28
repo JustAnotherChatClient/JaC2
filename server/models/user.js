@@ -27,9 +27,9 @@ UserSchema.statics.addUser = (User) => {
   })
 }
 
-UserSchema.statics.updateUser = (id, User) => {
+UserSchema.statics.updateUser = (id, user) => {
   return new Promise((resolve, reject) => {
-    User.findByIdAndUpdate(id, User, { new: true }, function (err, user) {
+    User.findByIdAndUpdate(id, user, { new: true }, (err, user) => {
       if (err) reject(err)
       else resolve(user)
     })

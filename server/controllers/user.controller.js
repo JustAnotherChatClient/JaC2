@@ -30,8 +30,25 @@ const getUserById = (req, res) => {
     })
 }
 
+const updateUserById = (req, res) => {
+  if (req.body) {
+    const user = {}
+    Object.keys(req.body).forEach(key => {
+      user[key] = req.body[key]
+    })
+    const { id } = req.params
+    User.updateUser(id, user)
+      .then(updateUser => {
+        res.status(200).json({ status: 200, data: updateUser, message: 'Ok' })
+      }).catch(err => {
+        res.status(500).json({ status: 500, message: err.message })
+      })
+  } else throw new Error('Error updating user!')
+}
+
 export default {
   newUser,
   getUsers,
-  getUserById
+  getUserById,
+  updateUserById
 }
