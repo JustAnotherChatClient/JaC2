@@ -35,13 +35,10 @@ const returnSpecificChannel = (req, res) => {
 
 const updateSpecificChannel = (req, res) => {
   if (req.body) {
-    // console.log(req.body)
     const channel = {}
     Object.keys(req.body).forEach(key => {
-      console.log(key, req.body[key])
       channel[key] = req.body[key]
     })
-    console.log(channel)
     const { id } = req.params
     Channel.updateChannel(id, channel)
       .then(newChannel => {
