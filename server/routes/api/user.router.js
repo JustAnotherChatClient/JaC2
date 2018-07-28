@@ -5,6 +5,8 @@ const routes = (router) => {
   router.get('/users', UserController.getUsers)
   router.get('/user/:id', UserController.getUserById)
   router.put('/user/:id', UserController.updateUserById)
+  router.post('/user/disable/:id', UserController.disableUserById)
+  router.post('/user/enable/:id', UserController.enableUserById)
 
   return router
 }

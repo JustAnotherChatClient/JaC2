@@ -65,7 +65,7 @@ UserSchema.statics.getFriendsByUserId = (id) => {
 
 UserSchema.statics.disableUser = (id) => {
   return new Promise((resolve, reject) => {
-    this.findByIdAndUpdate(id, { $set: { isActive: false } }, { new: true }, (err, user) => {
+    User.findByIdAndUpdate(id, { $set: { isActive: false } }, { new: true }, (err, user) => {
       if (err) reject(err)
       else resolve(user)
     })
@@ -74,7 +74,7 @@ UserSchema.statics.disableUser = (id) => {
 
 UserSchema.statics.enableUser = (id) => {
   return new Promise((resolve, reject) => {
-    this.findByIdAndUpdate(id, { $set: { isActive: true } }, { new: true }, (err, user) => {
+    User.findByIdAndUpdate(id, { $set: { isActive: true } }, { new: true }, (err, user) => {
       if (err) reject(err)
       else resolve(user)
     })
