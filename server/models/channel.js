@@ -26,16 +26,8 @@ ChannelSchema.statics.addChannel = (channel) => {
 
 ChannelSchema.statics.updateChannel = (_id, channel) => {
   return new Promise((resolve, reject) => {
-    this.findByIdAndUpdate(_id, channel, (err, item) => {
-      if (err) reject(err)
-      else resolve(item)
-    })
-  })
-}
-
-ChannelSchema.statics.disableChannel = (_id) => {
-  return new Promise((resolve, reject) => {
-    this.findByIdAndUpdate(_id, {isActive: false}, (err, item) => {
+    Channel.findByIdAndUpdate(_id, { $set: channel }, { new: true }, (err, item) => {
+      // findByIdAndUpdate(id, { $set: { size: 'large' }}, { new: true }
       if (err) reject(err)
       else resolve(item)
     })
@@ -44,7 +36,7 @@ ChannelSchema.statics.disableChannel = (_id) => {
 
 ChannelSchema.statics.getAllChannels = () => {
   return new Promise((resolve, reject) => {
-    this.find((err, channels) => {
+    Channel.find((err, channels) => {
       if (err) reject(err)
       else resolve(channels)
     })
@@ -53,7 +45,7 @@ ChannelSchema.statics.getAllChannels = () => {
 
 ChannelSchema.statics.getChannelById = (_id) => {
   return new Promise((resolve, reject) => {
-    this.findOne({_id}, (err, item) => {
+    Channel.findOne({_id}, (err, item) => {
       if (err) reject(err)
       else resolve(item)
     })
