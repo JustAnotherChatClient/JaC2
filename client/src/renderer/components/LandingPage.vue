@@ -1,13 +1,11 @@
 <template>
   <div>
-    <section class="section">
-      <div class="columns">
-        <div class="column is-four-fifths">
-          <img class="image" src="~@/assets/main.png" alt="main-background">
-        </div>
-        <sign-up-panel/>
+    <div class="columns">
+      <div class="column is-three-quarters">
+        <img class="image center-graphic" src="~@/assets/main.png" />
       </div>
-    </section>
+      <sign-up-panel/>
+    </div>
   </div>
 </template>
 
@@ -15,15 +13,20 @@
   import SignUpPanel from './LandingPage/SignUpPanel'
   export default {
     name: 'landing-page',
-    components: {SignUpPanel}
+    components: { SignUpPanel }
   }
 </script>
 
-<style>
- .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+<style scoped>
+
+  .center-graphic {
+    height: 500px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .column {
+    padding: 0;
   }
 
   /**:not(path):not(g) {

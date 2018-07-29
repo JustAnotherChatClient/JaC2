@@ -11,7 +11,9 @@
       <div class="right-side">
         <input type="text" placeholder="Username/Email">
         <input type="text" placeholder="Password">
-        <router-link to="/"><button class="alt">Go Back</button></router-link>
+        <router-link to="/">
+          <button class="alt">Go Back</button>
+        </router-link>
       </div>
     </main>
   </div>
