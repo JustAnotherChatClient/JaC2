@@ -2,15 +2,40 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let UserSchema = new Schema({
-  text: String,
-  firstName: String,
-  lastName: String,
-  email: String,
-  hashPass: String,
+  firstName: {
+    type: String,
+    trim: true
+  },
+  lastName: {
+    type: String,
+    trim: true
+  },
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true
+  },
+  // doing the hashing else where, leaving this commented in case we need this later
+  // hashPass: String,
+  pass: {
+    type: String,
+    required: true
+  },
+  passConf: {
+    type: String,
+    required: true
+  },
   isActive: Boolean,
   createDate: Date,
   lastLogin: Date,
   status: String,
+  username: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true
+  },
   friends: [{
     _id: { type: String, ref: 'User' },
     isBlocked: Boolean
