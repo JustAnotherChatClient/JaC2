@@ -68,6 +68,7 @@ server.use(router())
 
 /*
 server.use((err, req, res, next) => {
+  console.log(err)
   if (err) res.status(500).json({ status: 500, message: 'Internal Server Error' })
   else res.status(404).json({ status: 404, message: 'Not Found' })
 })
