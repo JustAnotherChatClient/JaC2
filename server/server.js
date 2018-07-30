@@ -4,6 +4,7 @@ import http from 'http'
 import Express from 'express'
 import bodyParser from 'body-parser'
 import compression from 'compression'
+import cors from 'cors'
 // import jwt from 'express-jwt'
 import bunyan from 'bunyan'
 import bunyanExpressLogger from 'express-bunyan-logger'
@@ -60,6 +61,7 @@ db.on('error', err => {
 })
 
 // Express setup
+server.use(cors())
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(compression())

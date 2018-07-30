@@ -1,6 +1,8 @@
+
 <template>
-  <div id="app">
-    <router-view></router-view>
+  <div>
+    <div id="electron-titlebar" class="drag"></div>
+    <router-view/>
   </div>
 </template>
 
@@ -12,4 +14,10 @@
 
 <style>
   /* CSS */
+  @import "~bulma/css/bulma.css";
+  #electron-titlebar {
+    margin-bottom: 5px;
+  }
+  /* disable scrollbar */
+   ::-webkit-scrollbar { display: none; }
 </style>

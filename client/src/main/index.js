@@ -1,6 +1,7 @@
 'use strict'
 
 import { app, BrowserWindow } from 'electron'
+// BrowserWindow
 
 /**
  * Set `__static` path to static files in production
@@ -19,11 +20,33 @@ function createWindow () {
   /**
    * Initial window options
    */
-  mainWindow = new BrowserWindow({
-    height: 563,
+  const windowSettings = {
+    height: 490,
+    width: 900,
+    resizable: false,
     useContentSize: true,
-    width: 1000
-  })
+    titleBarStyle: 'hidden',
+    frame: false,
+    webPreferences: {
+      webSecurity: false
+    },
+    scollable: false
+  }
+
+  switch (process.platform) {
+    case 'darwin': {
+      windowSettings.height = 465
+      windowSettings.titleBarStyle = 'hidden-inset'
+      break
+    }
+    case 'win32':
+      break
+    case 'freebsd':
+    case 'linux':
+    case 'sunos':
+      break
+  }
+  mainWindow = new BrowserWindow(windowSettings)
 
   mainWindow.loadURL(winURL)
 
