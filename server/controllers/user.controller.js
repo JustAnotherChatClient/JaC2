@@ -66,16 +66,11 @@ const updateUserById = (req, res) => {
   } else throw new Error('Error updating user!')
 }
 
-const authenticateUser = (req, res) => {
-
-}
-
 export default {
   newUser,
   getUsers,
   getUserById,
   updateUserById,
   disableUserById,
-  enableUserById,
-  authenticateUser
+  enableUserById
 }
