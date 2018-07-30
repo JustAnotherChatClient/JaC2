@@ -1,5 +1,7 @@
+
 <template>
   <div>
+    <div id="electron-titlebar" class="drag"></div>
     <router-view/>
   </div>
 </template>
@@ -13,12 +15,9 @@
 <style>
   /* CSS */
   @import "~bulma/css/bulma.css";
-  /* Bind the toolbar as the window's draggable region */
-  .top-bar {
-    -webkit-app-region: drag;
-    position:fixed;
-    height: 50px;
-    background-color: transparent;
-    z-index: 9999;
+  #electron-titlebar {
+    margin-bottom: 5px;
   }
+  /* disable scrollbar */
+   ::-webkit-scrollbar { display: none; }
 </style>

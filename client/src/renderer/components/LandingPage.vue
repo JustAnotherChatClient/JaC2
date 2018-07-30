@@ -1,11 +1,14 @@
 <template>
-  <div>
-    <div class="columns">
-      <div class="column is-three-quarters">
-        <img class="image center-graphic" src="~@/assets/main.png" />
+  <div class="columns">
+    <div class="column is-three-quarters is-paddingless">
+      <div id="center-graphic" class="image">
+        <div id="headline">
+          <h3 class="subtitle is-3 has-text-info is-overlay">Chat Intelligently</h3>
+          <h1 class="title is-1 has-text-info is-overlay">JaC2</h1>
+        </div>
       </div>
-      <sign-up-panel/>
     </div>
+    <sign-up-panel/>
   </div>
 </template>
 
@@ -18,16 +21,23 @@
 </script>
 
 <style scoped>
-
-  .center-graphic {
-    height: 500px;
+  #center-graphic {
+    height: 100%;
     padding: 0;
     margin: 0;
+    background-image: url("~@/assets/main.png");
+  }
+  #headline {
+    color: teal;
+    position: relative;
+    top: 40%;
+    left: 30%;
   }
 
-  .column {
-    padding: 0;
+  h3 {
+    margin-top: 35px;
   }
+
 
   /**:not(path):not(g) {
     color:                    hsla(210, 100%, 100%, 0.9) !important;

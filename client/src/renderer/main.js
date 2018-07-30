@@ -6,6 +6,8 @@ import router from './router'
 import store from './store'
 import 'bulma/css/bulma.css'
 
+require('electron-titlebar')
+
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false

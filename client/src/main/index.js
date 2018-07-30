@@ -20,13 +20,34 @@ function createWindow () {
   /**
    * Initial window options
    */
-  mainWindow = new BrowserWindow({
-    height: 488,
+  const windowSettings = {
+    height: 490,
     width: 900,
     resizable: false,
     useContentSize: true,
-    titleBarStyle: 'hiddenInset'
-  })
+    titleBarStyle: 'hidden',
+    frame: false,
+    webPreferences: {
+      webSecurity: false
+    },
+    scollable: false
+  }
+
+  /* just in case we need to modify windowSettings based on platform
+  switch(process.platform) {
+    case 'darwin': {
+      break;
+    }
+    case 'win32': {
+      break;
+    }
+    case 'freebsd:
+    case 'linux':
+    case 'sunos':
+      break;
+  }
+  */
+  mainWindow = new BrowserWindow(windowSettings)
 
   mainWindow.loadURL(winURL)
 
