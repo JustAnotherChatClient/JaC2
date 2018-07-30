@@ -33,20 +33,20 @@ function createWindow () {
     scollable: false
   }
 
-  /* just in case we need to modify windowSettings based on platform
-  switch(process.platform) {
+  switch (process.platform) {
     case 'darwin': {
-      break;
+      windowSettings.height = 465
+      windowSettings.titleBarStyle = 'hidden-inset'
+      break
     }
     case 'win32': {
-      break;
+      break
     }
-    case 'freebsd:
+    case 'freebsd':
     case 'linux':
     case 'sunos':
-      break;
+      break
   }
-  */
   mainWindow = new BrowserWindow(windowSettings)
 
   mainWindow.loadURL(winURL)
