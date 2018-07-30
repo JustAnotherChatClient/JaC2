@@ -65,7 +65,7 @@
     background-color: lightgray;
   }
   .section {
-    padding: 5px;
+    padding: 0.5em;
   }
   .input {
     width: 90%;

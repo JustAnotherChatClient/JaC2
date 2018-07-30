@@ -35,7 +35,7 @@
   }
 
   h3 {
-    margin-top: 35px;
+    margin-top: 0.75em;
   }
 
 

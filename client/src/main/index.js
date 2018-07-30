@@ -39,9 +39,8 @@ function createWindow () {
       windowSettings.titleBarStyle = 'hidden-inset'
       break
     }
-    case 'win32': {
+    case 'win32':
       break
-    }
     case 'freebsd':
     case 'linux':
     case 'sunos':
