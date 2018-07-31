@@ -63,23 +63,5 @@ UserSchema.statics.getFriendsByUserId = (id) => {
   })
 }
 
-UserSchema.statics.disableUser = (id) => {
-  return new Promise((resolve, reject) => {
-    User.findByIdAndUpdate(id, { $set: { isActive: false } }, { new: true }, (err, user) => {
-      if (err) reject(err)
-      else resolve(user)
-    })
-  })
-}
-
-UserSchema.statics.enableUser = (id) => {
-  return new Promise((resolve, reject) => {
-    User.findByIdAndUpdate(id, { $set: { isActive: true } }, { new: true }, (err, user) => {
-      if (err) reject(err)
-      else resolve(user)
-    })
-  })
-}
-
 const User = mongoose.model('User', UserSchema)
 export default User
