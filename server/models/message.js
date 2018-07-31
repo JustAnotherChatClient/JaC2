@@ -19,27 +19,45 @@ MessageSchema.statics.addMessage = (message) => {
   })
 }
 
-MessageSchema.statics.deleteMessage = (_id) => {
+MessageSchema.statics.deleteMessage = (id) => {
   return new Promise((resolve, reject) => {
-    this.findByIdAndRemove(_id, (err, item) => {
+    Message.findByIdAndRemove(id, (err, item) => {
       if (err) reject(err)
       else resolve(item)
     })
   })
 }
 
-MessageSchema.statics.getMessageByOwner = (owner) => {
+MessageSchema.statics.getMessagesByOwner = (owner) => {
   return new Promise((resolve, reject) => {
-    this.findOne({owner}, (err, item) => {
+    Message.find({owner}, (err, item) => {
       if (err) reject(err)
       else resolve(item)
     })
   })
 }
 
-MessageSchema.statics.updateMessage = (_id, message) => {
+MessageSchema.statics.getMessageById = (id) => {
   return new Promise((resolve, reject) => {
-    this.findByIdAndUpdate(_id, message, (err, item) => {
+    Message.findById(id, (err, item) => {
+      if (err) reject(err)
+      else resolve(item)
+    })
+  })
+}
+
+MessageSchema.statics.getMessages = () => {
+  return new Promise((resolve, reject) => {
+    Message.find((err, item) => {
+      if (err) reject(err)
+      else resolve(item)
+    })
+  })
+}
+
+MessageSchema.statics.updateMessage = (id, message) => {
+  return new Promise((resolve, reject) => {
+    Message.findByIdAndUpdate(id, message, (err, item) => {
       if (err) reject(err)
       else resolve(item)
     })
