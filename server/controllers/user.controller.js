@@ -29,26 +29,6 @@ const getUserById = (req, res) => {
     })
 }
 
-const disableUserById = (req, res) => {
-  const { id } = req.params
-  User.disableUser(id)
-    .then(disableUserById => {
-      res.status(200).json({status: 200, data: disableUserById, message: 'Ok'})
-    }).catch(err => {
-      res.status(500).json({status: 500, message: err.message})
-    })
-}
-
-const enableUserById = (req, res) => {
-  const { id } = req.params
-  User.enableUser(id)
-    .then(enableUserById => {
-      res.status(200).json({status: 200, data: enableUserById, message: 'Ok'})
-    }).catch(err => {
-      res.status(500).json({status: 500, message: err.message})
-    })
-}
-
 const updateUserById = (req, res) => {
   if (req.body) {
     const user = {}
