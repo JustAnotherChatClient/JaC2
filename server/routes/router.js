@@ -4,6 +4,8 @@ import testRouter from './api/test.router'
 
 import channelRouter from './api/channel.router'
 
+import UserRouter from './api/user.router'
+
 const routes = () => {
   const router = new Router()
 
@@ -15,6 +17,7 @@ const routes = () => {
   router.use('/api', testRouter(router))
 
   router.use('/api', channelRouter(router))
+  router.use('/api', UserRouter(router))
 
   return router
 }

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const bcrypt = require('bcrypt')
 
 let UserSchema = new Schema({
   firstName: {
@@ -43,9 +44,9 @@ let UserSchema = new Schema({
 
 })
 
-UserSchema.statics.addUser = (User) => {
+UserSchema.statics.addUser = (user) => {
   return new Promise((resolve, reject) => {
-    User.save((err, user) => {
+    user.save((err, user) => {
       if (err) reject(err)
       else resolve(user)
     })
@@ -105,6 +106,36 @@ UserSchema.statics.enableUser = (id) => {
     })
   })
 }
+
+UserSchema.statics.authenticate = function (email, pass, username, callBack) {
+  User.findOne({ email: email })
+    .exec(function (err, user) {
+      if (err) {
+        return callBack(err)
+      } else if (!user) {
+        err.status = 401
+        return callBack(err)
+      }
+      bcrypt.compare(pass, user.pass, function (err, res) {
+        if (res === true) {
+          return callBack(null, user)
+        } else {
+          return callBack(err)
+        }
+      })
+    })
+}
+
+UserSchema.pre('save', function (next) {
+  let user = this
+  bcrypt.hash(user.pass, 10, function (err, hash) {
+    if (err) {
+      return next(err)
+    }
+    user.pass = hash
+    next()
+  })
+})
 
 const User = mongoose.model('User', UserSchema)
 export default User
