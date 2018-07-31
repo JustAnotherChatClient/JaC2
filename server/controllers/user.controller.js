@@ -11,8 +11,7 @@ const newUser = (req, res) => {
 }
 
 const getUsers = (req, res) => {
-  const { users } = req.body
-  User.getAllUsers({ users })
+  User.getAllUsers()
     .then(getUsers => {
       res.status(200).json({status: 200, data: getUsers, message: 'Ok'})
     }).catch(err => {
