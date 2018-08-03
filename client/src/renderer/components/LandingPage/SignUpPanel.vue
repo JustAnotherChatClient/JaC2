@@ -7,37 +7,37 @@
       <div class="field">
         <div class="control">
           <label class="label is-small">Username</label>
-          <input class="input is-small is-rounded" type="text">
+          <input class="input is-small is-rounded" type="text" v-model="username"/>
         </div>
       </div>
       <div class="field">
         <div class="control">
           <label class="label is-small">Password</label>
-          <input class="input is-small is-rounded" type="text">
+          <input class="input is-small is-rounded" type="text" v-model="password"/>
         </div>
       </div>
       <div class="field">
         <div class="control">
           <label class="label is-small">Confirm Password</label>
-          <input class="input is-small is-rounded" type="text">
+          <input class="input is-small is-rounded" type="text" v-model="confPass"/>
         </div>
       </div>
       <div class="field">
         <div class="control">
           <label class="label is-small">Email</label>
-          <input class="input is-small is-rounded" type="text">
+          <input class="input is-small is-rounded" type="text" v-model="email"/>
         </div>
       </div>
       <div class="field">
         <div class="control">
           <label class="label is-small">First Name</label>
-          <input class="input is-small is-rounded" type="text">
+          <input class="input is-small is-rounded" type="text" v-model="firstName"/>
         </div>
       </div>
       <div class="field">
         <div class="control">
           <label class="label is-small">Last Name</label>
-          <input class="input is-small is-rounded" type="text">
+          <input class="input is-small is-rounded" type="text" v-model="lastName"/>
         </div>
       </div>
       <div class="field">
@@ -53,13 +53,27 @@
   export default {
     name: 'sign-up-panel',
     methods: {
-      post () {
-        this.$http.post(`${this.$config.backend}/api/test`, {
-          text: 'hello-world'
-        }).then(res => {
+      checkInput () {
+        const { username, password, email, confPass, firstName, lastName } = this
+         
+      },
+      async post () {
+        try {
+          const res = await this.$http.post(`${this.$config.backend}/user`)
           console.log(res)
-        }).catch(err => console.log(err))
+        } catch (err) {
+          console.log(err)
+        }
       }
+    },
+    data: {
+      errors: [],
+      username: null,
+      password: null,
+      email: null,
+      confPass: null,
+      firstName: null,
+      lastName: null
     }
   }
 </script>
