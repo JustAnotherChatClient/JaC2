@@ -30,7 +30,7 @@ MessageSchema.statics.deleteMessage = (id) => {
 
 MessageSchema.statics.getMessagesByOwner = (owner) => {
   return new Promise((resolve, reject) => {
-    Message.find({owner}, (err, item) => {
+    Message.find({ owner }, (err, item) => {
       if (err) reject(err)
       else resolve(item)
     })
