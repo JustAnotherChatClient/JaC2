@@ -6,6 +6,24 @@
     <section class="section">
       <div class="field">
         <div class="control">
+          <label class="label is-small">First Name</label>
+          <input class="input is-small is-rounded" type="text">
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <label class="label is-small">Last Name</label>
+          <input class="input is-small is-rounded" type="text">
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <label class="label is-small">Email</label>
+          <input class="input is-small is-rounded" type="text">
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
           <label class="label is-small">Username</label>
           <input class="input is-small is-rounded" type="text">
         </div>
@@ -19,24 +37,6 @@
       <div class="field">
         <div class="control">
           <label class="label is-small">Confirm Password</label>
-          <input class="input is-small is-rounded" type="text">
-        </div>
-      </div>
-      <div class="field">
-        <div class="control">
-          <label class="label is-small">Email</label>
-          <input class="input is-small is-rounded" type="text">
-        </div>
-      </div>
-      <div class="field">
-        <div class="control">
-          <label class="label is-small">First Name</label>
-          <input class="input is-small is-rounded" type="text">
-        </div>
-      </div>
-      <div class="field">
-        <div class="control">
-          <label class="label is-small">Last Name</label>
           <input class="input is-small is-rounded" type="text">
         </div>
       </div>

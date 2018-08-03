@@ -1,6 +1,6 @@
 <template>
   <div class="columns">
-    <div class="column is-three-quarters is-paddingless">
+    <div class="column is-three-fifths is-paddingless">
       <div id="center-graphic" class="image">
         <div id="headline">
           <h3 class="subtitle is-3 has-text-info is-overlay">Chat Intelligently</h3>
@@ -8,15 +8,15 @@
         </div>
       </div>
     </div>
-    <sign-up-panel/>
+    <forgot-password-panel/>
   </div>
 </template>
 
 <script>
-  import SignUpPanel from './LandingPage/SignUpPanel'
+  import ForgotPasswordPanel from './LandingPage/ForgotPasswordPanel'
   export default {
     name: 'landing-page',
-    components: { SignUpPanel }
+    components: { ForgotPasswordPanel }
   }
 </script>
 

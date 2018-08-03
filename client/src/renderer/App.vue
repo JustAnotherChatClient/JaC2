@@ -20,4 +20,8 @@
   }
   /* disable scrollbar */
    ::-webkit-scrollbar { display: none; }
+
+   .button, input {
+    -webkit-app-region: no-drag;
+  }
 </style>
