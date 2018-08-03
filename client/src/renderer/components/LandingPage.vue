@@ -8,7 +8,7 @@
         </div>
       </div>
     </div>
-    <sign-up-panel/>
+    <component :is="currentView"/>
   </div>
 </template>
 
@@ -16,7 +16,10 @@
   import SignUpPanel from './LandingPage/SignUpPanel'
   export default {
     name: 'landing-page',
-    components: { SignUpPanel }
+    components: { SignUpPanel },
+    data () {
+      return {currentView: 'sign-up-panel'}
+    }
   }
 </script>
 
