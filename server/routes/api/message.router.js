@@ -6,6 +6,7 @@ const routes = (router) => {
   router.get('/messages/:owner', MessageController.getMessagesByOwner)
   router.get('/message/:id', MessageController.getMessageById)
   router.put('/message/:id', MessageController.updateMessageById)
+  router.delete('/message/:id', MessageController.deleteMessageById)
 
   return router
 }
