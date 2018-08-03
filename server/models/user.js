@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let UserSchema = new Schema({
-  text: String,
+  userName: String,
   firstName: String,
   lastName: String,
   email: String,
@@ -27,9 +27,9 @@ UserSchema.statics.addUser = (User) => {
   })
 }
 
-UserSchema.statics.updateUser = (id, User) => {
+UserSchema.statics.updateUser = (id, user) => {
   return new Promise((resolve, reject) => {
-    User.findByIdAndUpdate(id, User, { new: true }, function (err, user) {
+    User.findByIdAndUpdate(id, user, { new: true }, (err, user) => {
       if (err) reject(err)
       else resolve(user)
     })
@@ -38,7 +38,7 @@ UserSchema.statics.updateUser = (id, User) => {
 
 UserSchema.statics.getAllUsers = () => {
   return new Promise((resolve, reject) => {
-    this.find((err, users) => {
+    User.find((err, users) => {
       if (err) reject(err)
       else resolve(users)
     })
@@ -47,7 +47,7 @@ UserSchema.statics.getAllUsers = () => {
 
 UserSchema.statics.getUser = (id) => {
   return new Promise((resolve, reject) => {
-    this.findById(id, (err, user) => {
+    User.findById(id, (err, user) => {
       if (err) reject(err)
       else resolve(user)
     })
@@ -59,24 +59,6 @@ UserSchema.statics.getFriendsByUserId = (id) => {
     User.findById(id, (err, user) => {
       if (err) reject(err)
       else resolve(user.friends)
-    })
-  })
-}
-
-UserSchema.statics.disableUser = (id) => {
-  return new Promise((resolve, reject) => {
-    this.findByIdAndUpdate(id, { $set: { isActive: false } }, { new: true }, (err, user) => {
-      if (err) reject(err)
-      else resolve(user)
-    })
-  })
-}
-
-UserSchema.statics.enableUser = (id) => {
-  return new Promise((resolve, reject) => {
-    this.findByIdAndUpdate(id, { $set: { isActive: true } }, { new: true }, (err, user) => {
-      if (err) reject(err)
-      else resolve(user)
     })
   })
 }
