@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const bcrypt = require('bcrypt')
 
 let UserSchema = new Schema({
   firstName: {
@@ -15,7 +14,8 @@ let UserSchema = new Schema({
     type: String,
     unique: true,
     required: true,
-    trim: true
+    trim: true,
+    match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
   },
   // doing the hashing else where, leaving this commented in case we need this later
   // hashPass: String,
@@ -106,7 +106,7 @@ UserSchema.statics.enableUser = (id) => {
     })
   })
 }
-
+/* Might return to this format later...
 UserSchema.statics.authenticate = function (email, pass, username, callBack) {
   User.findOne({ email: email })
     .exec(function (err, user) {
@@ -136,6 +136,6 @@ UserSchema.pre('save', function (next) {
     next()
   })
 })
-
+*/
 const User = mongoose.model('User', UserSchema)
 export default User
