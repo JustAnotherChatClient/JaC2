@@ -1,14 +1,13 @@
 <template>
-  <div class="columns">
-    <div class="column is-three-quarters is-paddingless">
-      <div id="center-graphic" class="image">
-        <div id="headline">
-          <h3 class="subtitle is-3 has-text-info is-overlay">Chat Intelligently</h3>
-          <h1 class="title is-1 has-text-info is-overlay">JaC2</h1>
-        </div>
+  <div class="hero is-fullheight">
+    <div class="columns">
+      <div class="column is-three-quarters is-paddingless">
+        <img id="center-graphic" class="image" src="~@/assets/main.png"/>
+        <h1 id="title" class="title is-1 has-text-info is-overlay">JaC2</h1>
+        <h3 id="subtitle" class="subtitle is-3 has-text-info is-overlay">Chat Intelligently</h3>
       </div>
+      <SignUpPanel/>
     </div>
-    <component :is="currentView"/>
   </div>
 </template>
 
@@ -17,9 +16,7 @@
   export default {
     name: 'landing-page',
     components: { SignUpPanel },
-    data () {
-      return {currentView: 'sign-up-panel'}
-    }
+    data: {currentView: 'SignUpPanel'}
   }
 </script>
 
@@ -30,11 +27,14 @@
     margin: 0;
     background-image: url("~@/assets/main.png");
   }
-  #headline {
+  #title {
     color: teal;
-    position: relative;
     top: 40%;
-    left: 30%;
+    left: 25%;
+  }
+  #subtitle {
+    top: 50%;
+    left: 25%;
   }
 
   h3 {

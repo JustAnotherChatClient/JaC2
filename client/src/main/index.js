@@ -21,8 +21,8 @@ function createWindow () {
    * Initial window options
    */
   const windowSettings = {
-    height: 490,
-    width: 900,
+    height: 615,
+    width: 1050,
     resizable: false,
     useContentSize: true,
     titleBarStyle: 'hidden',
