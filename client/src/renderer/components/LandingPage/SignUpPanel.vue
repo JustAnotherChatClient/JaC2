@@ -55,12 +55,40 @@
     methods: {
       checkInput () {
         const { username, password, email, confPass, firstName, lastName } = this
-         
+        // username 4 chars, max 15
+        // password min 8, max 16 one cap, one lower, one number
+  
+        if (username.length < 4 || username.length > 15) {
+          errors.push('User name must be 4 to 16 characters.')
+        }
+
+        if (password != confPass) {
+          errors.push('Passwords must match.')
+        }
+
+        if (!(password.length >= 8 || password.length <= 16)) {
+          errors.push('Password must be 8 to 16 characters')
+        } else {
+          if (!/[A-Z]/.test(password)) {
+            errors.push('Password must have a capitol letter.')
+          } else {
+            if (!/[a-z]/.test(password)) {
+              errors.push('Password must contain a lowercase letter.')
+            } else {
+              if (!/[0-9]/.test(password)) {
+                errors.push('Password must contain one number')
+              }
+            }
+          }
+        }
       },
       async post () {
         try {
-          const res = await this.$http.post(`${this.$config.backend}/user`)
-          console.log(res)
+          this.checkInput()
+          if (!this.errors.length) {
+            const res = await this.$http.post(`${this.$config.backend}/user`)
+            console.log(res)
+          }
         } catch (err) {
           console.log(err)
         }
