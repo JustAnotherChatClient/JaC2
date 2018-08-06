@@ -35,7 +35,7 @@ function createWindow () {
 
   switch (process.platform) {
     case 'darwin': {
-      windowSettings.height = 465
+      windowSettings.height = 580
       windowSettings.titleBarStyle = 'hidden-inset'
       break
     }

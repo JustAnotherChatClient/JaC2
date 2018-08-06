@@ -6,17 +6,18 @@
         <h1 id="title" class="title is-1 has-text-info is-overlay">JaC2</h1>
         <h3 id="subtitle" class="subtitle is-3 has-text-info is-overlay">Chat Intelligently</h3>
       </div>
-      <SignUpPanel/>
+      <component :is="currentView"/>
     </div>
   </div>
 </template>
 
 <script>
   import SignUpPanel from './LandingPage/SignUpPanel'
+  import LoginPanel from './LandingPage/LoginPanel'
   export default {
     name: 'landing-page',
-    components: { SignUpPanel },
-    data: {currentView: 'SignUpPanel'}
+    components: { SignUpPanel, LoginPanel },
+    data: () => ({currentView: 'LoginPanel'})
   }
 </script>
 
@@ -25,7 +26,6 @@
     height: 100%;
     padding: 0;
     margin: 0;
-    background-image: url("~@/assets/main.png");
   }
   #title {
     color: teal;

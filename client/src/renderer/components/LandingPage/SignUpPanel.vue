@@ -4,10 +4,12 @@
       <h4 class="title is-4 has-text-centered">Sign Up</h4>
     </section>
     <section class="section">
+      <!--
       <div class='notification is-info is-overlay'>
         <button class="delete is-overlay"></button>
         <p>{{ res.message }}</p>
       </div>
+      -->
       <div class="field">
         <div class="control">
           <label class="label is-small">Username</label>
@@ -83,6 +85,7 @@
           if (form.username.length < 4 || form.username.length > 15) {
             errors.username = 'Username must be 4 to 16 characters.'
           } else {
+            // no errors
             errors.username = null
           }
         } else {
