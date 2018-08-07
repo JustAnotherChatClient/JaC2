@@ -9,8 +9,28 @@
       </div>
     </div>
     <forgot-password-panel/>
+    <!-- <sign-up-panel/> -->
+    <!-- <login-panel/> -->
   </div>
 </template>
+
+<!--<script>
+  import SignUpPanel from './LandingPage/SignUpPanel'
+  export default {
+    name: 'landing-page',
+    components: { SignUpPanel }
+    // <sign-up-panel/>
+  }
+</script>-->
+
+<!--<script>
+  import LoginPanel from './LandingPage/LoginPanel'
+  export default {
+    name: 'landing-page',
+    components: { LoginPanel }
+    // <login-in-panel/>
+  }
+</script>-->
 
 <script>
   import ForgotPasswordPanel from './LandingPage/ForgotPasswordPanel'
