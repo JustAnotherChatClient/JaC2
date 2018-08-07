@@ -25,7 +25,7 @@
   </div>
 </template>
 
-<script>
+
   export default {}
 </script>
 
@@ -37,7 +37,9 @@
   }
   .column {
     background-color: lightgray;
+
     height: 29em;
+
   }
   .section {
     padding: 0.5em;

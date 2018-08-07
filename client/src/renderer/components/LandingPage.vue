@@ -11,11 +11,12 @@
   </div>
 </template>
 
-<script>
+<!--<script>
   import SignUpPanel from './LandingPage/SignUpPanel'
   import LoginPanel from './LandingPage/LoginPanel'
   export default {
     name: 'landing-page',
+
     components: { SignUpPanel, LoginPanel },
     data: () => ({currentView: 'LoginPanel'})
   }
