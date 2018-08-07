@@ -1,5 +1,8 @@
 <template>
   <div class="column">
+    <section class="section">
+      <a @click="changeView('LoginPanel')">Back to Sign Up</a>
+    </section>
     <section class="section is-paddingless">
       <h4 class="title is-4 has-text-centered">Forgot Password</h4>
     </section>
@@ -29,15 +32,21 @@
   </div>
 </template>
 
-<script>
+<!-- <script>
   export default {
     name: 'forgot-password-panel'
+
+
   }
-</script>
+</script> -->
 
 <script>
   export default {
+    props: ['currentView'],
     methods: {
+      changeView (panel) {
+        this.$emit('panel-switch', panel)
+      },
       checkInput () {
         const { form, errors } = this
         // Validates that the email is a real email format

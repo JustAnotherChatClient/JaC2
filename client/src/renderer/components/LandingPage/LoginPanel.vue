@@ -24,6 +24,7 @@
     </section>
     <section class="section">
       <a @click="changeView('SignUpPanel')">Sign up</a>
+      <a @click="changeView('ForgotPasswordPanel')">Forgot Your Password?</a>
     </section>
   </div>
 </template>
@@ -40,16 +41,13 @@
 </script>
 
 <style scoped>
-  .center {
+  /* .center {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+  } */
   .column {
     background-color: lightgray;
-
-    height: 29em;
-
   }
   .section {
     padding: 0.5em;

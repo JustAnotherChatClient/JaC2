@@ -6,18 +6,19 @@
         <h1 id="title" class="title is-1 has-text-info is-overlay">JaC2</h1>
         <h3 id="subtitle" class="subtitle is-3 has-text-info is-overlay">Chat Intelligently</h3>
       </div>
-      <component :is="currentView" :currentView="currentView" @panel-switch="switchPanel"/>
+       <component :is="currentView" :currentView="currentView" @panel-switch="switchPanel"/>
     </div>
   </div>
 </template>
 
-<!--<script>
+<script>
   import SignUpPanel from './LandingPage/SignUpPanel'
   import LoginPanel from './LandingPage/LoginPanel'
+  import ForgotPasswordPanel from './LandingPage/ForgotPasswordPanel'
   export default {
     name: 'landing-page',
 
-    components: { SignUpPanel, LoginPanel },
+    components: { SignUpPanel, LoginPanel, ForgotPasswordPanel },
     data: () => ({currentView: 'LoginPanel'}),
     methods: {
       switchPanel (panel) {
@@ -46,6 +47,12 @@
   h3 {
     margin-top: 0.75em;
   }
+
+  .columns {
+    height: 615px;
+  }
+
+  
 
 
   /**:not(path):not(g) {
