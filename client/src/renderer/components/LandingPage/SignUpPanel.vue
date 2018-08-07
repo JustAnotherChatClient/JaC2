@@ -75,7 +75,11 @@
 
 <script>
   export default {
+    props: ['currentView'],
     methods: {
+      changeView (panel) {
+        this.$emit('panel-switch', panel)
+      },
       checkInput () {
         const { form, errors } = this
         // username 4 chars, max 15

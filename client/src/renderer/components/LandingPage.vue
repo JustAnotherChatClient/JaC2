@@ -6,7 +6,7 @@
         <h1 id="title" class="title is-1 has-text-info is-overlay">JaC2</h1>
         <h3 id="subtitle" class="subtitle is-3 has-text-info is-overlay">Chat Intelligently</h3>
       </div>
-      <component :is="currentView"/>
+      <component :is="currentView" :currentView="currentView" @panel-switch="switchPanel"/>
     </div>
   </div>
 </template>
@@ -18,7 +18,12 @@
     name: 'landing-page',
 
     components: { SignUpPanel, LoginPanel },
-    data: () => ({currentView: 'LoginPanel'})
+    data: () => ({currentView: 'LoginPanel'}),
+    methods: {
+      switchPanel (panel) {
+        this.currentView = panel
+      }
+    }
   }
 </script>
 

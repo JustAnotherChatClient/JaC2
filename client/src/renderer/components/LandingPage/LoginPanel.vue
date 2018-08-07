@@ -22,11 +22,21 @@
         </div>
       </div>
     </section>
+    <section class="section">
+      <a @click="changeView('SignUpPanel')">Sign up</a>
+    </section>
   </div>
 </template>
 
-
-  export default {}
+<script>
+  export default {
+    props: ['currentView'],
+    methods: {
+      changeView (panel) {
+        this.$emit('panel-switch', panel)
+      }
+    }
+  }
 </script>
 
 <style scoped>
