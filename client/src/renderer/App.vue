@@ -20,6 +20,7 @@
     margin-bottom: 5px;
   }
   /* disable scrollbar */
+  
   ::-webkit-scrollbar { display: none; }
 
   .button, button, input {

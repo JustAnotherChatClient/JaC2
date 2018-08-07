@@ -47,7 +47,9 @@
   }
   .column {
     background-color: lightgray;
+
     height: 29em;
+
   }
   .section {
     padding: 0.5em;
