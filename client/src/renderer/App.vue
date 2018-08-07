@@ -15,9 +15,15 @@
 <style>
   /* CSS */
   @import "~bulma/css/bulma.css";
+
   #electron-titlebar {
     margin-bottom: 5px;
   }
   /* disable scrollbar */
-   ::-webkit-scrollbar { display: none; }
+  ::-webkit-scrollbar { display: none; }
+
+  .button, button, input {
+    -webkit-app-region: no-drag;
+  }
+
 </style>

@@ -49,7 +49,5 @@ export default {
   newUser,
   getUsers,
   getUserById,
-  updateUserById,
-  disableUserById,
-  enableUserById
+  updateUserById
 }
