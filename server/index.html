@@ -1,0 +1,21 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const getSocket = async () => {
+        return await fetch('/api/channel/socket/mysocketid', {
+          method: 'POST'
+        }).then(res => {
+          console.log(res.body)
+        })
+      }
+
+      const id = getSocket().then(res => console.log(res))
+      
+      var socket = io.connect(`http://localhost:3000/mysocketid`)
+    </script>
+  </body>
+</html>

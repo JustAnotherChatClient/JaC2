@@ -18,7 +18,6 @@ const routes = () => {
   router.use('/api', messageRouter(router))
   router.use('/api', userRouter(router))
 
-
   return router
 }
 
