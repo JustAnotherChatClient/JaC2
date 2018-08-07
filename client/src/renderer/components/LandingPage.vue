@@ -1,42 +1,24 @@
 <template>
-  <div class="columns">
-    <div class="column is-three-fifths is-paddingless">
-      <div id="center-graphic" class="image">
-        <div id="headline">
-          <h3 class="subtitle is-3 has-text-info is-overlay">Chat Intelligently</h3>
-          <h1 class="title is-1 has-text-info is-overlay">JaC2</h1>
-        </div>
+  <div class="hero is-fullheight">
+    <div class="columns">
+      <div class="column is-three-quarters is-paddingless">
+        <img id="center-graphic" class="image" src="~@/assets/main.png"/>
+        <h1 id="title" class="title is-1 has-text-info is-overlay">JaC2</h1>
+        <h3 id="subtitle" class="subtitle is-3 has-text-info is-overlay">Chat Intelligently</h3>
       </div>
+      <component :is="currentView"/>
     </div>
-    <forgot-password-panel/>
-    <!-- <sign-up-panel/> -->
-    <!-- <login-panel/> -->
   </div>
 </template>
 
 <!--<script>
   import SignUpPanel from './LandingPage/SignUpPanel'
-  export default {
-    name: 'landing-page',
-    components: { SignUpPanel }
-    // <sign-up-panel/>
-  }
-</script>-->
-
-<!--<script>
   import LoginPanel from './LandingPage/LoginPanel'
   export default {
     name: 'landing-page',
-    components: { LoginPanel }
-    // <login-in-panel/>
-  }
-</script>-->
 
-<script>
-  import ForgotPasswordPanel from './LandingPage/ForgotPasswordPanel'
-  export default {
-    name: 'landing-page',
-    components: { ForgotPasswordPanel }
+    components: { SignUpPanel, LoginPanel },
+    data: () => ({currentView: 'LoginPanel'})
   }
 </script>
 
@@ -45,13 +27,15 @@
     height: 100%;
     padding: 0;
     margin: 0;
-    background-image: url("~@/assets/main.png");
   }
-  #headline {
+  #title {
     color: teal;
-    position: relative;
     top: 40%;
-    left: 30%;
+    left: 25%;
+  }
+  #subtitle {
+    top: 50%;
+    left: 25%;
   }
 
   h3 {

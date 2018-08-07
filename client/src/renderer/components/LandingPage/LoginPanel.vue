@@ -25,10 +25,8 @@
   </div>
 </template>
 
-<script>
-  export default {
-    name: 'login-panel'
-  }
+
+  export default {}
 </script>
 
 <style scoped>
@@ -39,7 +37,9 @@
   }
   .column {
     background-color: lightgray;
-    height: 30em;
+
+    height: 29em;
+
   }
   .section {
     padding: 0.5em;
