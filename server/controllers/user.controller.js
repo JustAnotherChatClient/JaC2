@@ -137,5 +137,4 @@ export default {
   getUserById,
   updateUserById,
   logIn
-  // signUp
 }
