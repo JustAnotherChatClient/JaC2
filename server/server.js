@@ -4,6 +4,7 @@ import http from 'http'
 import Express from 'express'
 import bodyParser from 'body-parser'
 import compression from 'compression'
+import cors from 'cors'
 // import jwt from 'express-jwt'
 import bunyan from 'bunyan'
 import bunyanExpressLogger from 'express-bunyan-logger'
@@ -60,16 +61,19 @@ db.on('error', err => {
 })
 
 // Express setup
+server.use(cors())
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(compression())
 
 server.use(router())
 
+/*
 server.use((err, req, res, next) => {
   if (err) res.status(500).json({ status: 500, message: 'Internal Server Error' })
-  res.status(404).json({ status: 404, message: 'Not Found' })
+  else res.status(404).json({ status: 404, message: 'Not Found' })
 })
+*/
 
 // TODO setup jwt support
 /*
