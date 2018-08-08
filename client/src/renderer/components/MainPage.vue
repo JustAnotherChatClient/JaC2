@@ -12,13 +12,12 @@
 </template>
 
 <script>
-  import SignUpPanel from './LandingPage/SignUpPanel'
-  import LoginPanel from './LandingPage/LoginPanel'
+  import ChatPanel from './MainPage/ChatPanel'
   export default {
-    name: 'landing-page',
+    name: 'main-page',
 
-    components: { SignUpPanel, LoginPanel },
-    data: () => ({currentView: 'LoginPanel'}),
+    components: { ChatPanel },
+    data: () => ({currentView: 'ChatPanel'}),
     methods: {
       switchPanel (panel) {
         this.currentView = panel
