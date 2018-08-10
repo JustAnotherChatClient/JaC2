@@ -1,6 +1,6 @@
 <template>
   <div class="column">
-    <section class="section is-paddingless">
+    <section class="section is-small">
       <h4 class="title is-4 has-text-centered">Sign In</h4>
     </section>
     <section class="section">
@@ -31,6 +31,13 @@
   </div>
 </template>
 <!-- This script below is used to swap out different components on the same browser window -->
+
+<codepen-resources lang="json">
+  {
+    "css": ["https://use.fontawesome.com/releases/v5.1.0/css/all.css"]
+  }
+</codepen-resources>
+
 <script>
   export default {
     props: ['currentView'],

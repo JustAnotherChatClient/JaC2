@@ -1,7 +1,7 @@
 <template>
   <div class="column">
     <section class="section">
-      <a @click="changeView('LoginPanel')">Back to Login</a>
+      <a @click="changeView('LoginPanel')"> <i class="fas fa-home">< Login</i></a>
     </section>
     <section class="section is-paddingless">
       <h4 class="title is-4 has-text-centered">Sign Up</h4>
@@ -244,3 +244,4 @@
     margin-left: 0.3rem;
   }
 </style>
+

@@ -3,8 +3,9 @@
     <div class="columns">
       <div class="column is-three-quarters is-paddingless">
         <img id="center-graphic" class="image" src="~@/assets/main.png"/>
-        <h1 id="title" class="title is-1 has-text-info is-overlay">JaC2</h1>
-        <h3 id="subtitle" class="subtitle is-3 has-text-info is-overlay">Chat Intelligently</h3>
+        <!-- TODO: is-overlay causing multiple issues. add title text to image to resolve -->
+        <!-- <h1 id="title" class="title is-3 has-text-info is-overlay">JaC2</h1>
+        <h3 id="subtitle" class="subtitle is-3 has-text-info is-overlay">Chat Intelligently</h3> -->
       </div>
        <component :is="currentView" :currentView="currentView" @panel-switch="switchPanel"/>
     </div>
