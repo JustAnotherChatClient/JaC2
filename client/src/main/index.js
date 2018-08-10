@@ -50,6 +50,8 @@ function createWindow () {
 
   mainWindow.loadURL(winURL)
 
+  // mainWindow.setBounds
+
   mainWindow.on('closed', () => {
     mainWindow = null
   })

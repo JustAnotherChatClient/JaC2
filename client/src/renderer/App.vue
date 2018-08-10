@@ -7,9 +7,13 @@
 </template>
 
 <script>
-  export default {
-    name: 'jac2-client'
-  }
+import disableScroll from 'disable-scroll'
+
+disableScroll.on()
+
+export default {
+  name: 'jac2-client'
+}
 </script>
 
 <style>
@@ -25,6 +29,9 @@
 
   .button, button, input, p, label, title, h1, h3, input, section {
     -webkit-app-region: no-drag;
+
   }
+
+ 
 
 </style>

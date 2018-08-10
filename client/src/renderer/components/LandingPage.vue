@@ -49,7 +49,7 @@
   }
 
   .columns {
-    height: 615px;
+    height: 40em;
   }
 
   

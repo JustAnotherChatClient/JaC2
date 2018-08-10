@@ -2712,6 +2712,12 @@ dir-glob@^2.0.0:
     arrify "^1.0.1"
     path-type "^3.0.0"
 
+disable-scroll@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/disable-scroll/-/disable-scroll-0.4.0.tgz#9dfd1656837ee85e45240707067782a67eac6eb4"
+  dependencies:
+    scrollingelement "^1.5.2"
+
 dmg-builder@3.1.4:
   version "3.1.4"
   resolved "https://registry.yarnpkg.com/dmg-builder/-/dmg-builder-3.1.4.tgz#57c53a2b5a1e28526a837430b6ecc7110cadcf63"
@@ -7555,6 +7561,10 @@ schema-utils@^0.3.0:
   resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.3.0.tgz#f5877222ce3e931edae039f17eb3716e7137f8cf"
   dependencies:
     ajv "^5.0.0"
+
+scrollingelement@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/scrollingelement/-/scrollingelement-1.5.2.tgz#b63b71114d864e3671ca1e854ea1f93af61f107e"
 
 select-hose@^2.0.0:
   version "2.0.0"
