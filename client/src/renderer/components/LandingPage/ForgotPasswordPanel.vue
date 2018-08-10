@@ -10,6 +10,7 @@
       <div class="field">
         <div class="control">
           <div class="error">
+            <!-- Message that shows up below the title -->
             <p>{{ message }}</p>
           </div>
         </div>
@@ -31,15 +32,8 @@
     </section>
   </div>
 </template>
-
-<!-- <script>
-  export default {
-    name: 'forgot-password-panel'
-
-
-  }
-</script> -->
-
+<!-- This script below is used to swap out different components on the same browser window
+     The same script also handles simple validation before connecting to the server -->
 <script>
   export default {
     props: ['currentView'],

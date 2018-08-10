@@ -6,6 +6,7 @@
     <section class="section">
       <div class="field">
         <div class="control">
+          <!-- User will be able to login with a unique email or username -->
           <label class="label is-small">Username / Email</label>
           <input class="input is-small is-rounded" type="text">
         </div>
@@ -22,13 +23,14 @@
         </div>
       </div>
     </section>
+    <!-- Buttons that sit at the bottom to redirect to another page -->
     <section class="section">
       <a @click="changeView('SignUpPanel')">Sign up</a>
       <a @click="changeView('ForgotPasswordPanel')">Forgot Your Password?</a>
     </section>
   </div>
 </template>
-
+<!-- This script below is used to swap out different components on the same browser window -->
 <script>
   export default {
     props: ['currentView'],

@@ -75,7 +75,8 @@
     </section>
   </div>
 </template>
-
+<!-- This script below is used to swap out different components on the same browser window
+     The same script also handles simple validation before connecting to the server -->
 <script>
   export default {
     props: ['currentView'],
