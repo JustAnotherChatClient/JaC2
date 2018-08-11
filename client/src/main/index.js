@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'development') {
 
 let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
-  ? `http://localhost:9080`
+  ? `http://localhost:9080/main`
   : `file://${__dirname}/index.html`
 
 function createWindow () {
@@ -23,7 +23,7 @@ function createWindow () {
   const windowSettings = {
     height: 615,
     width: 1050,
-    resizable: false,
+    resizable: true,
     useContentSize: true,
     titleBarStyle: 'hidden',
     frame: false,
@@ -47,7 +47,7 @@ function createWindow () {
       break
   }
   mainWindow = new BrowserWindow(windowSettings)
-
+  console.log('pancake', winURL)
   mainWindow.loadURL(winURL)
 
   mainWindow.on('closed', () => {
