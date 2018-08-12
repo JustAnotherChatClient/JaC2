@@ -1,5 +1,6 @@
 <template>
   <div class="column">
+
     <section class="section is-paddingless">
       <div class='columns'>
         <div class='column is-3'>

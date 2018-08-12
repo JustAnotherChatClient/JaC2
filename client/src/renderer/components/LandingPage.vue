@@ -3,8 +3,9 @@
     <div class="columns">
       <div class="column is-three-quarters is-paddingless">
         <img id="center-graphic" class="image" src="~@/assets/main.png"/>
-        <h1 id="title" class="title is-1 has-text-info is-overlay">JaC2</h1>
-        <h3 id="subtitle" class="subtitle is-3 has-text-info is-overlay">Chat Intelligently</h3>
+        <!-- TODO: is-overlay causing multiple issues. add title text to image to resolve -->
+        <!-- <h1 id="title" class="title is-3 has-text-info is-overlay">JaC2</h1>
+        <h3 id="subtitle" class="subtitle is-3 has-text-info is-overlay">Chat Intelligently</h3> -->
       </div>
        <component :is="currentView" :currentView="currentView" @panel-switch="switchPanel"/>
     </div>
@@ -17,7 +18,6 @@
   import ForgotPasswordPanel from './LandingPage/ForgotPasswordPanel'
   export default {
     name: 'landing-page',
-
     components: { SignUpPanel, LoginPanel, ForgotPasswordPanel },
     data: () => ({currentView: 'LoginPanel'}),
     methods: {
@@ -43,20 +43,10 @@
     top: 50%;
     left: 25%;
   }
-
   h3 {
     margin-top: 0.75em;
   }
-  .hero {
-    padding-top: 0.5rem;
+  .columns {
+    height: 40em;
   }
-
-
-  /**:not(path):not(g) {
-    color:                    hsla(210, 100%, 100%, 0.9) !important;
-    background:               hsla(210, 100%,  50%, 0.5) !important;
-    outline:    solid 0.25rem hsla(210, 100%, 100%, 0.5) !important;
-    box-shadow: none !important;
-  }*/
-
 </style>

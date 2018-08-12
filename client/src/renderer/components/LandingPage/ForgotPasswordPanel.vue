@@ -1,10 +1,16 @@
 <template>
   <div class="column">
-    <section class="section">
-      <a @click="changeView('LoginPanel')">Back to Sign Up</a>
-    </section>
     <section class="section is-paddingless">
-      <h4 class="title is-4 has-text-centered">Forgot Password</h4>
+      <div class='columns'>
+        <div class='column is-3'>
+          <a class='icon' @click="changeView('LoginPanel')">
+            <i class="fas fa-arrow-circle-left" />
+          </a>
+        </div>
+        <div class='column'>
+          <h4 class="title is-4">Forgot Password</h4>
+        </div>
+      </div>
     </section>
     <section class="section">
       <div class="field">
@@ -45,7 +51,6 @@
         const { form, errors } = this
         // Validates that the email is a real email format
         // Validates that the user did not just enter blank information
-
         if (form.email) {
           if (!/\S+@\S+\.\S+/.test(form.email)) {
             errors.email = 'Email format is mail@some.com.'
