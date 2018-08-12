@@ -12,8 +12,50 @@ if (process.env.NODE_ENV !== 'development') {
   global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
 }
 
-const init = () => {
-  windows.landing.init()
+let mainWindow
+const winURL = process.env.NODE_ENV === 'development'
+  ? `http://localhost:9080`
+  : `file://${__dirname}/index.html`
+
+function createWindow () {
+  /**
+   * Initial window options
+   */
+  const windowSettings = {
+    height: 615,
+    width: 1050,
+    resizable: false,
+    useContentSize: true,
+    titleBarStyle: 'hidden',
+    frame: false,
+    webPreferences: {
+      webSecurity: false
+    },
+    scollable: false
+  }
+
+  switch (process.platform) {
+    case 'darwin': {
+      windowSettings.height = 580
+      windowSettings.titleBarStyle = 'hidden-inset'
+      break
+    }
+    case 'win32':
+      break
+    case 'freebsd':
+    case 'linux':
+    case 'sunos':
+      break
+  }
+  mainWindow = new BrowserWindow(windowSettings)
+
+  mainWindow.loadURL(winURL)
+
+  // mainWindow.setBounds
+
+  mainWindow.on('closed', () => {
+    mainWindow = null
+  })
 }
 
 app.on('ready', init)

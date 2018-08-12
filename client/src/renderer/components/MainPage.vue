@@ -1,25 +1,24 @@
 <template>
   <div class="hero is-fullheight">
     <div class="columns">
-      <div class="column is-three-quarters is-paddingless">
+      <!-- <div class="column is-three-quarters is-paddingless">
         <img id="center-graphic" class="image" src="~@/assets/main.png"/>
         <h1 id="title" class="title is-1 has-text-info is-overlay">JaC2</h1>
         <h3 id="subtitle" class="subtitle is-3 has-text-info is-overlay">Chat Intelligently</h3>
       </div>
-       <component :is="currentView" :currentView="currentView" @panel-switch="switchPanel"/>
-    </div>
+      <component :is="currentView" :currentView="currentView" @panel-switch="switchPanel"/>
+    </div> --> 
+    <p> This is going to be the main page </p>
   </div>
 </template>
-<!-- Calls the other panels and imports it into the main window to allow the panel swapping feature -->
-<script>
-  import SignUpPanel from './LandingPage/SignUpPanel'
-  import LoginPanel from './LandingPage/LoginPanel'
-  import ForgotPasswordPanel from './LandingPage/ForgotPasswordPanel'
-  export default {
-    name: 'landing-page',
 
-    components: { SignUpPanel, LoginPanel, ForgotPasswordPanel },
-    data: () => ({currentView: 'LoginPanel'}),
+<script>
+  import ChatPanel from './MainPage/ChatPanel'
+  export default {
+    name: 'main-page',
+
+    components: { ChatPanel },
+    data: () => ({currentView: 'ChatPanel'}),
     methods: {
       switchPanel (panel) {
         this.currentView = panel
@@ -47,9 +46,6 @@
   h3 {
     margin-top: 0.75em;
   }
-  .hero {
-    padding-top: 0.5rem;
-  }
 
 
   /**:not(path):not(g) {
@@ -58,5 +54,4 @@
     outline:    solid 0.25rem hsla(210, 100%, 100%, 0.5) !important;
     box-shadow: none !important;
   }*/
-
 </style>
