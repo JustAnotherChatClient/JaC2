@@ -1,8 +1,5 @@
 <template>
   <div class="column">
-    <section class="section">
-      <a @click="changeView('LoginPanel')">Back to Login</a>
-    </section>
     <section class="section is-paddingless">
       <div class='columns'>
         <div class='column is-3'>

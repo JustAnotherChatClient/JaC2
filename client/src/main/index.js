@@ -1,7 +1,6 @@
 'use strict'
 
-import { app } from 'electron'
-import windows from './windows'
+import { app, BrowserWindow } from 'electron'
 // BrowserWindow
 
 /**
@@ -51,14 +50,12 @@ function createWindow () {
 
   mainWindow.loadURL(winURL)
 
-  // mainWindow.setBounds
-
   mainWindow.on('closed', () => {
     mainWindow = null
   })
 }
 
-app.on('ready', init)
+app.on('ready', createWindow)
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -67,8 +64,8 @@ app.on('window-all-closed', () => {
 })
 
 app.on('activate', () => {
-  if (!windows.landing.window) {
-    windows.landing.init()
+  if (mainWindow === null) {
+    createWindow()
   }
 })
 
@@ -82,11 +79,9 @@ app.on('activate', () => {
 
 /*
 import { autoUpdater } from 'electron-updater'
-
 autoUpdater.on('update-downloaded', () => {
   autoUpdater.quitAndInstall()
 })
-
 app.on('ready', () => {
   if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
 })
