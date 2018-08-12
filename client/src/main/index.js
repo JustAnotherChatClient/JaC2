@@ -1,6 +1,7 @@
 'use strict'
 
-import { app, BrowserWindow } from 'electron'
+import { app } from 'electron'
+import windows from './windows'
 // BrowserWindow
 
 /**
@@ -11,51 +12,11 @@ if (process.env.NODE_ENV !== 'development') {
   global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
 }
 
-let mainWindow
-const winURL = process.env.NODE_ENV === 'development'
-  ? `http://localhost:9080`
-  : `file://${__dirname}/index.html`
-
-function createWindow () {
-  /**
-   * Initial window options
-   */
-  const windowSettings = {
-    height: 615,
-    width: 1050,
-    resizable: false,
-    useContentSize: true,
-    titleBarStyle: 'hidden',
-    frame: false,
-    webPreferences: {
-      webSecurity: false
-    },
-    scollable: false
-  }
-
-  switch (process.platform) {
-    case 'darwin': {
-      windowSettings.height = 580
-      windowSettings.titleBarStyle = 'hidden-inset'
-      break
-    }
-    case 'win32':
-      break
-    case 'freebsd':
-    case 'linux':
-    case 'sunos':
-      break
-  }
-  mainWindow = new BrowserWindow(windowSettings)
-
-  mainWindow.loadURL(winURL)
-
-  mainWindow.on('closed', () => {
-    mainWindow = null
-  })
+const init = () => {
+  windows.landing.init()
 }
 
-app.on('ready', createWindow)
+app.on('ready', init)
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -64,8 +25,8 @@ app.on('window-all-closed', () => {
 })
 
 app.on('activate', () => {
-  if (mainWindow === null) {
-    createWindow()
+  if (!windows.landing.window) {
+    windows.landing.init()
   }
 })
 

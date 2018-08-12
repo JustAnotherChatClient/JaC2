@@ -1,15 +1,18 @@
 <template>
   <div class="column">
     <section class="section is-paddingless">
-      <h4 class="title is-4 has-text-centered">Sign Up</h4>
+      <div class='columns'>
+        <div class='column is-3'>
+          <a class='icon' @click="changeView('LoginPanel')">
+            <i class="fas fa-arrow-circle-left" />
+          </a>
+        </div>
+        <div class='column'>
+          <h4 class="title is-4">Sign Up</h4>
+        </div>
+      </div>
     </section>
     <section class="section">
-      <!--
-      <div class='notification is-info is-overlay'>
-        <button class="delete is-overlay"></button>
-        <p>{{ res.message }}</p>
-      </div>
-      -->
       <div class="field">
         <div class="control">
           <label class="label is-small">Username</label>
@@ -160,37 +163,42 @@
       async post () {
         try {
           if (this.checkInput()) {
-            const res = await this.$http.post(`${this.$config.backend}/user`, this.form)
-            console.log(res)
-            this.res.message = res.message
+            const res = await this.$http.post(`${this.$config.backend}/api/auth/signup`, this.form)
+              .then(res => res.data)
+            if (res.status === 200) {
+              this.$notify(res.message, 'success')
+              Object.keys(this.form).forEach(key => {
+                this.form[key] = null
+              })
+            } else {
+              this.$notify(res.message, 'error')
+            }
           }
         } catch (err) {
-          console.log(err)
+          this.$notify('An error occurred. Try again.', 'error')
         }
       }
     },
-    data: () => ({
-      form: {
-        username: null,
-        password: null,
-        email: null,
-        confPass: null,
-        firstName: null,
-        lastName: null
-      },
-      errors: {
-        username: null,
-        password: null,
-        email: null,
-        confPass: null,
-        firstName: null,
-        lastName: null
-      },
-      res: {
-        message: null,
-        error: null
+    data () {
+      return {
+        form: {
+          username: null,
+          password: null,
+          email: null,
+          confPass: null,
+          firstName: null,
+          lastName: null
+        },
+        errors: {
+          username: null,
+          password: null,
+          email: null,
+          confPass: null,
+          firstName: null,
+          lastName: null
+        }
       }
-    })
+    }
   }
 </script>
 
@@ -221,19 +229,9 @@
   .help {
     margin: 0;
   }
-  .notification {
-    position: relative;
-    top: 10%;
-  }
-  @keyframes slideDown {
-    0%, 100% {
-      -webkit-transform: translateY(-50px);
-      -moz-transform: translateY(-50px);
-    }
-    10%, 90% {
-      -webkit-transform: translateY(0px);
-      -moz-transform: translateY(0px);
-    }
+
+  .icon:hover {
+    color: #3273dc;
   }
     
   label {

@@ -7,11 +7,20 @@ import store from './store'
 import db from './datastore'
 import config from './config'
 // Import extra dependendies
-import 'bulma/css/bulma.css'
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-require('electron-titlebar')
-
+import Notify from 'vue2-notify'
+Vue.use(Notify, {
+  itemClass: 'notification',
+  position: 'top-right'
+})
+const types = {
+  info: { itemClass: 'is-info' },
+  error: { itemClass: 'is-danger' },
+  warning: { itemClass: 'is-warning' },
+  success: { itemClass: 'is-success' }
+}
+Vue.$notify.setTypes(types)
 // Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))

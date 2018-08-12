@@ -46,6 +46,10 @@
     margin-top: 0.75em;
   }
 
+  .hero {
+    padding-top: 0.5rem;
+  }
+
 
   /**:not(path):not(g) {
     color:                    hsla(210, 100%, 100%, 0.9) !important;
