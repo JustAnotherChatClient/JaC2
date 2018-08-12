@@ -19,6 +19,7 @@ import router from './routes/router'
 
 // create server singleton
 const server = new Express()
+const router = Express.Router()
 
 // add config to every req via: req.locals.config
 server.locals.config = config
@@ -66,7 +67,7 @@ server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(compression())
 
-server.use(router())
+server.use(router(router))
 
 /*
 server.use((err, req, res, next) => {
