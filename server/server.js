@@ -19,7 +19,6 @@ import router from './routes/router'
 
 // create server singleton
 const server = new Express()
-const router = Express.Router()
 
 // add config to every req via: req.locals.config
 server.locals.config = config

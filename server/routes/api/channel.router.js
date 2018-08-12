@@ -1,6 +1,9 @@
+import { Router } from 'express'
 import ChannelController from '../../controllers/channel.controller'
 
-const routes = (router) => {
+const routes = () => {
+  const router = new Router()
+
   router.post('/channel', ChannelController.newChannel)
   router.get('/channel', ChannelController.returnAllChannels)
   router.get('/channel/:id', ChannelController.returnSpecificChannel)

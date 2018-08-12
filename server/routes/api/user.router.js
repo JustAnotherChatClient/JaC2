@@ -1,6 +1,9 @@
+import { Router } from 'express'
 import UserController from '../../controllers/user.controller'
 
-const routes = (router) => {
+const routes = () => {
+  const router = new Router()
+
   router.post('/user', UserController.newUser)
   router.get('/users', UserController.getUsers)
   router.get('/user/:id', UserController.getUserById)
