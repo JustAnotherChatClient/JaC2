@@ -1,7 +1,9 @@
 <template>
   <div class="column">
     <section class="section">
-      <a @click="changeView('LoginPanel')">Back to Sign Up</a>
+      <a class='icon' @click="changeView('LoginPanel')">
+            <i class="fas fa-arrow-circle-left" />
+          </a>
     </section>
     <section class="section is-paddingless">
       <h4 class="title is-4 has-text-centered">Forgot Password</h4>
@@ -16,7 +18,9 @@
         </div>
       </div>
       <div class="field">
-        <div class="control">
+        <div class="control has-text-centered">
+          <br>
+          <br>
           <label class="label is-large">Email</label>
           <input id="input" class="input is-small is-rounded" type="text" v-model="form.email">
           <div class="error">
@@ -105,7 +109,7 @@
   }
   .column {
     background-color: lightgray;
-    height: 30em;
+    height: 40em;
   }
   .section {
     padding: 0.5em;
