@@ -1,6 +1,7 @@
 'use strict'
 
-import { app, BrowserWindow } from 'electron'
+import { app } from 'electron'
+import windows from './windows'
 // BrowserWindow
 
 /**
@@ -57,7 +58,7 @@ function createWindow () {
   })
 }
 
-app.on('ready', createWindow)
+app.on('ready', init)
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -66,8 +67,8 @@ app.on('window-all-closed', () => {
 })
 
 app.on('activate', () => {
-  if (mainWindow === null) {
-    createWindow()
+  if (!windows.landing.window) {
+    windows.landing.init()
   }
 })
 

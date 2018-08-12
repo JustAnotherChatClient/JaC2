@@ -66,7 +66,7 @@ server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(compression())
 
-server.use(router())
+server.use(router(router))
 
 /*
 server.use((err, req, res, next) => {

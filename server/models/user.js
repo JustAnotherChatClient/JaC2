@@ -17,13 +17,7 @@ let UserSchema = new Schema({
     trim: true,
     match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
   },
-  // doing the hashing else where, leaving this commented in case we need this later
-  // hashPass: String,
-  pass: {
-    type: String,
-    required: true
-  },
-  passConf: {
+  password: {
     type: String,
     required: true
   },
@@ -85,6 +79,24 @@ UserSchema.statics.getFriendsByUserId = (id) => {
     User.findById(id, (err, user) => {
       if (err) reject(err)
       else resolve(user.friends)
+    })
+  })
+}
+
+UserSchema.statics.getByEmail = (email) => {
+  return new Promise((resolve, reject) => {
+    User.findOne({ email }, (err, user) => {
+      if (err) reject(err)
+      else resolve(user)
+    })
+  })
+}
+
+UserSchema.statics.getByUsername = (username) => {
+  return new Promise((resolve, reject) => {
+    User.findOne({ username }, (err, user) => {
+      if (err) reject(err)
+      else resolve(user)
     })
   })
 }

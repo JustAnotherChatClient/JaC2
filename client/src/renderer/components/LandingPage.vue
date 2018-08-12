@@ -47,8 +47,16 @@
   h3 {
     margin-top: 0.75em;
   }
-
-  .columns {
-    height: 40em;
+  .hero {
+    padding-top: 0.5rem;
   }
+
+
+  /**:not(path):not(g) {
+    color:                    hsla(210, 100%, 100%, 0.9) !important;
+    background:               hsla(210, 100%,  50%, 0.5) !important;
+    outline:    solid 0.25rem hsla(210, 100%, 100%, 0.5) !important;
+    box-shadow: none !important;
+  }*/
+
 </style>
