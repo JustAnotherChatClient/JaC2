@@ -1,18 +1,18 @@
 <template>
   <div class="column">
+    <section class="section">
+      <a @click="changeView('LoginPanel')"> <i class="fas fa-home">< Login</i></a>
+    </section>
     <section class="section is-paddingless">
-      <div class='columns'>
-        <div class='column is-3'>
-          <a class='icon' @click="changeView('LoginPanel')">
-            <i class="fas fa-arrow-circle-left" />
-          </a>
-        </div>
-        <div class='column'>
-          <h4 class="title is-4">Sign Up</h4>
-        </div>
-      </div>
+      <h4 class="title is-4 has-text-centered">Sign Up</h4>
     </section>
     <section class="section">
+      <!--
+      <div class='notification is-info is-overlay'>
+        <button class="delete is-overlay"></button>
+        <p>{{ res.message }}</p>
+      </div>
+      -->
       <div class="field">
         <div class="control">
           <p v-if="errors.username" class="help is-danger">{{ errors.username }}</p>
@@ -164,42 +164,37 @@
       async post () {
         try {
           if (this.checkInput()) {
-            const res = await this.$http.post(`${this.$config.backend}/api/auth/signup`, this.form)
-              .then(res => res.data)
-            if (res.status === 200) {
-              this.$notify(res.message, 'success')
-              Object.keys(this.form).forEach(key => {
-                this.form[key] = null
-              })
-            } else {
-              this.$notify(res.message, 'error')
-            }
+            const res = await this.$http.post(`${this.$config.backend}/user`, this.form)
+            console.log(res)
+            this.res.message = res.message
           }
         } catch (err) {
-          this.$notify('An error occurred. Try again.', 'error')
+          console.log(err)
         }
       }
     },
-    data () {
-      return {
-        form: {
-          username: null,
-          password: null,
-          email: null,
-          confPass: null,
-          firstName: null,
-          lastName: null
-        },
-        errors: {
-          username: null,
-          password: null,
-          email: null,
-          confPass: null,
-          firstName: null,
-          lastName: null
-        }
+    data: () => ({
+      form: {
+        username: null,
+        password: null,
+        email: null,
+        confPass: null,
+        firstName: null,
+        lastName: null
+      },
+      errors: {
+        username: 'Username',
+        password: 'Password',
+        email: 'Email',
+        confPass: 'Confirm Password',
+        firstName: 'First Name',
+        lastName: 'Last Name'
+      },
+      res: {
+        message: null,
+        error: null
       }
-    }
+    })
   }
 </script>
 
@@ -230,9 +225,19 @@
   .help {
     margin: 0;
   }
-
-  .icon:hover {
-    color: #3273dc;
+  .notification {
+    position: relative;
+    top: 10%;
+  }
+  @keyframes slideDown {
+    0%, 100% {
+      -webkit-transform: translateY(-50px);
+      -moz-transform: translateY(-50px);
+    }
+    10%, 90% {
+      -webkit-transform: translateY(0px);
+      -moz-transform: translateY(0px);
+    }
   }
     
   label {

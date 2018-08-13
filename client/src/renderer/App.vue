@@ -1,6 +1,7 @@
 
 <template>
   <div>
+    <div id="electron-titlebar" class="drag"></div>
     <router-view/>
   </div>
 </template>
@@ -25,7 +26,6 @@ export default {
   /* disable scrollbar */
   
   ::-webkit-scrollbar { display: none; }
-
 
   .button, button, input, p, label, title, h1, h3, input, section {
     -webkit-app-region: no-drag;

@@ -1,9 +1,6 @@
-import { Router } from 'express'
 import MessageController from '../../controllers/message.controller'
 
-const routes = () => {
-  const router = new Router()
-
+const routes = (router) => {
   router.post('/message', MessageController.newMessage)
   router.get('/messages', MessageController.getMessages)
   router.get('/messages/:owner', MessageController.getMessagesByOwner)

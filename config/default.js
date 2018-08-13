@@ -12,9 +12,5 @@ module.exports = {
       keepAlive: 120
     }
   },
-  tokenSecret: 'supersecrettoken',
-  electron: {
-    WIN_URL: 'http://localhost:9080'
-  },
   PORT
 }
