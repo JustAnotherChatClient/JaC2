@@ -1,5 +1,6 @@
 <template>
   <div class="column">
+
     <section class="section is-paddingless">
       <div class='columns'>
         <div class='column is-3'>
@@ -22,7 +23,9 @@
         </div>
       </div>
       <div class="field">
-        <div class="control">
+        <div class="control has-text-centered">
+          <br>
+          <br>
           <label class="label is-large">Email</label>
           <input id="input" class="input is-small is-rounded" type="text" v-model="form.email">
           <div class="error">

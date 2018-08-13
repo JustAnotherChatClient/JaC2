@@ -1,7 +1,13 @@
 <template>
   <div class="column">
     <section class="section is-small">
-      <h4 class="title is-4 has-text-centered">Sign In</h4>
+      <br>
+      <br>
+      <h4 class="title is-3 has-text-centered">Sign In</h4>
+      <br>
+      <br>
+      <br>
+      <br>
     </section>
     <section class="section">
       <div class="field">
@@ -25,7 +31,13 @@
     </section>
     <!-- Buttons that sit at the bottom to redirect to another page -->
     <section class="section">
-      <a @click="changeView('SignUpPanel')">Sign up</a>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <a @click="changeView('SignUpPanel')">Sign up!</a>
+      <br>
       <a @click="changeView('ForgotPasswordPanel')">Forgot Your Password?</a>
     </section>
   </div>

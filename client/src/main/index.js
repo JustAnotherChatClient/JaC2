@@ -21,7 +21,7 @@ function createWindow () {
    * Initial window options
    */
   const windowSettings = {
-    height: 615,
+    height: 922,
     width: 1050,
     resizable: false,
     useContentSize: true,
