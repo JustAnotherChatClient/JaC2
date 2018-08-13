@@ -88,8 +88,6 @@
             } else {
               this.$notify(res.message, 'error')
             }
-          } else {
-            console.log('check input failed')
           }
         } catch (err) {
           this.$notify('An error occurred. Try again.', 'error')
