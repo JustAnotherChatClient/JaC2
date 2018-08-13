@@ -16,11 +16,11 @@
     <section class="section">
       <div class="field">
         <div class="control">
-          <p v-if="errors.username" class="help is-danger">{{ errors.username }}</p>
+          <label class="label is-small">Username</label>
           <input class="input is-small is-rounded" type="text" v-model="form.username"/>
-          <!-- <div class="error">
+          <div class="error">
             <p v-if="errors.username" class="help is-danger">{{ errors.username }}</p>
-          </div> -->
+          </div>
         </div>
       </div>
       <div class="field">
