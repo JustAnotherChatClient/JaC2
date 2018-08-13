@@ -1,6 +1,6 @@
 'use strict'
 
-import { app } from 'electron'
+import { app, ipcMain } from 'electron'
 import windows from './windows'
 // BrowserWindow
 
@@ -15,6 +15,13 @@ if (process.env.NODE_ENV !== 'development') {
 const init = () => {
   windows.landing.init()
 }
+
+ipcMain.on('successfulLogin', (e, args) => {
+  const { user } = args
+  console.log(user)
+  windows.landing.hide()
+  windows.main.init(user)
+})
 
 app.on('ready', init)
 

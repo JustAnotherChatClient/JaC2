@@ -29,6 +29,8 @@
 </template>
 
 <script>
+  import { ipcRenderer } from 'electron'
+
   export default {
     props: ['currentView'],
     methods: {
@@ -61,6 +63,7 @@
               Object.keys(this.form).forEach(key => {
                 this.form[key] = null
               })
+              ipcRenderer.send('successfulLogin', { user: res.user })
             } else {
               this.$notify(res.message, 'error')
             }
