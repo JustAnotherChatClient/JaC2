@@ -44,18 +44,61 @@
 </template>
 <!-- This script below is used to swap out different components on the same browser window -->
 
-<codepen-resources lang="json">
-  {
-    "css": ["https://use.fontawesome.com/releases/v5.1.0/css/all.css"]
-  }
-</codepen-resources>
-
 <script>
+  import { ipcRenderer } from 'electron'
+
   export default {
     props: ['currentView'],
     methods: {
       changeView (panel) {
         this.$emit('panel-switch', panel)
+      },
+      checkInput () {
+        const { form, errors } = this
+
+        if (!form.usernameEmail) {
+          errors.usernameEmail = 'A username or email is required.'
+        }
+
+        if (!form.password) {
+          errors.password = 'A password is required.'
+        }
+
+        return (form.usernameEmail && form.password)
+      },
+      async post () {
+        try {
+          if (this.checkInput()) {
+            const res = await this.$http.post(`${this.$config.backend}/api/auth/login`, {
+              usernameEmail: this.form.usernameEmail,
+              password: this.form.password
+            }).then(res => res.data)
+            if (res.status === 200) {
+              // SWING TO MAIN WINDOW PASSING res.user
+              this.$notify(res.message, 'success')
+              Object.keys(this.form).forEach(key => {
+                this.form[key] = null
+              })
+              ipcRenderer.send('successfulLogin', { user: res.user })
+            } else {
+              this.$notify(res.message, 'error')
+            }
+          }
+        } catch (err) {
+          this.$notify('An error occurred. Try again.', 'error')
+        }
+      }
+    },
+    data () {
+      return {
+        form: {
+          usernameEmail: null,
+          password: null
+        },
+        errors: {
+          username_email: null,
+          password: null
+        }
       }
     }
   }

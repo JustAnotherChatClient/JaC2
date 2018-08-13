@@ -9,6 +9,9 @@ const winURL = process.env.NODE_ENV === 'development'
 */
 
 const init = () => {
+  if (window) {
+    return window.show()
+  }
   /**
    * Initial window options
    */
@@ -38,6 +41,7 @@ const init = () => {
     case 'sunos':
       break
   }
+
   window = new BrowserWindow(windowSettings)
 
   window.loadURL(config.electron.WIN_URL)
@@ -51,7 +55,13 @@ const init = () => {
   })
 }
 
+const hide = () => {
+  if (!window) return
+  window.hide()
+}
+
 export default {
   init,
-  window
+  window,
+  hide
 }
