@@ -18,7 +18,6 @@
   import ForgotPasswordPanel from './LandingPage/ForgotPasswordPanel'
   export default {
     name: 'landing-page',
-
     components: { SignUpPanel, LoginPanel, ForgotPasswordPanel },
     data: () => ({currentView: 'LoginPanel'}),
     methods: {
@@ -44,11 +43,9 @@
     top: 50%;
     left: 25%;
   }
-
   h3 {
     margin-top: 0.75em;
   }
-
   .columns {
     height: 40em;
   }
