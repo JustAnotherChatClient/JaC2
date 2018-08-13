@@ -14,24 +14,29 @@
         <div class="control">
           <!-- User will be able to login with a unique email or username -->
           <label class="label is-small">Username / Email</label>
-          <input class="input is-small is-rounded" type="text">
+          <input class="input is-small is-rounded" type="text" v-model="form.usernameEmail">
+          <div class="error">
+            <p v-if="errors.usernameEmail" class="help is-danger">{{ errors.usernameEmail }}</p>
+          </div>
         </div>
       </div>
       <div class="field">
         <div class="control">
           <label class="label is-small">Password</label>
-          <input class="input is-small is-rounded" type="text">
+          <input class="input is-small is-rounded" type="password" v-model="form.password">
+          <div class="error">
+            <p v-if="errors.password" class="help is-danger">{{ errors.password }}</p>
+          </div>
         </div>
       </div>
       <div class="field">
         <div class="control has-text-centered">
-          <button class="button is-info">Sign In</button>
+          <button class="button is-info" @click="post">Sign In</button>
         </div>
       </div>
     </section>
     <!-- Buttons that sit at the bottom to redirect to another page -->
     <section class="section">
-      <br>
       <br>
       <br>
       <br>
@@ -83,6 +88,8 @@
             } else {
               this.$notify(res.message, 'error')
             }
+          } else {
+            console.log('check input failed')
           }
         } catch (err) {
           this.$notify('An error occurred. Try again.', 'error')
@@ -96,7 +103,7 @@
           password: null
         },
         errors: {
-          username_email: null,
+          usernameEmail: null,
           password: null
         }
       }
@@ -121,6 +128,14 @@
   }
   .title {
     padding : 0;
+    margin: 0;
+  }
+  .error {
+    height: 1.2rem;
+    padding: 0;
+    margin-left: 0.3rem;
+  }
+  .help {
     margin: 0;
   }
 </style>
