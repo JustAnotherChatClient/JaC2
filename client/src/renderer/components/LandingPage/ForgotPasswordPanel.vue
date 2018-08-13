@@ -110,7 +110,6 @@
   }
   .column {
     background-color: lightgray;
-    height: 30em;
   }
   .section {
     padding: 0.5em;
