@@ -31,7 +31,4 @@ export default {
     -webkit-app-region: no-drag;
 
   }
-
- 
-
 </style>

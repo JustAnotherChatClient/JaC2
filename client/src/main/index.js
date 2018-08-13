@@ -18,7 +18,6 @@ const init = () => {
 
 ipcMain.on('successfulLogin', (e, args) => {
   const { user } = args
-  console.log(user)
   windows.landing.hide()
   windows.main.init(user)
 })

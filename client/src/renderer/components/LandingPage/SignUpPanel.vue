@@ -16,7 +16,7 @@
       <div class="field">
         <div class="control">
           <label class="label is-small">Username</label>
-          <input class="input is-small is-rounded" type="text" v-model="form.username"/>
+          <input class="input is-small is-rounded" type="text" v-model="form.username" @keydown.enter="post"/>
           <div class="error">
             <p v-if="errors.username" class="help is-danger">{{ errors.username }}</p>
           </div>
@@ -25,7 +25,7 @@
       <div class="field">
         <div class="control">
           <label class="label is-small">Password</label>
-          <input class="input is-small is-rounded" type="password" v-model="form.password"/>
+          <input class="input is-small is-rounded" type="password" v-model="form.password" @keydown.enter="post"/>
           <div class="error">
             <p v-if="errors.password" class="help is-danger">{{ errors.password }}</p>
           </div>
@@ -34,7 +34,7 @@
       <div class="field">
         <div class="control">
           <label class="label is-small">Confirm Password</label>
-          <input class="input is-small is-rounded" type="password" v-model="form.confPass"/>
+          <input class="input is-small is-rounded" type="password" v-model="form.confPass" @keydown.enter="post"/>
           <div class="error">
             <p v-if="errors.confPass" class="help is-danger">{{ errors.confPass }}</p>
           </div>
@@ -43,7 +43,7 @@
       <div class="field">
         <div class="control">
           <label class="label is-small">Email</label>
-          <input class="input is-small is-rounded" type="text" v-model="form.email"/>
+          <input class="input is-small is-rounded" type="text" v-model="form.email" @keydown.enter="post"/>
           <div class="error">
             <p v-if="errors.email" class="help is-danger">{{ errors.email }}</p>
           </div>
@@ -52,7 +52,7 @@
       <div class="field">
         <div class="control">
           <label class="label is-small">First Name</label>
-          <input class="input is-small is-rounded" type="text" v-model="form.firstName"/>
+          <input class="input is-small is-rounded" type="text" v-model="form.firstName" @keydown.enter="post"/>
           <div class="error">          
             <p v-if="errors.firstName" class="help is-danger">{{ errors.firstName }}</p>
           </div>
@@ -61,7 +61,7 @@
       <div class="field">
         <div class="control">
           <label class="label is-small">Last Name</label>
-          <input class="input is-small is-rounded" type="text" v-model="form.lastName"/>
+          <input class="input is-small is-rounded" type="text" v-model="form.lastName" @keydown.enter="post"/>
           <div class="error">
             <p v-if="errors.lastName" class="help is-danger">{{ errors.lastName }}</p>
           </div>
@@ -69,7 +69,7 @@
       </div>
       <div class="field">
         <div class="control has-text-centered">
-          <button class="button is-info" @click="post">Sign Up</button>
+          <button class="button is-info" @click="post" @keydown.enter="post">Sign Up</button>
         </div>
       </div>
     </section>

@@ -14,7 +14,7 @@
         <div class="control">
           <!-- User will be able to login with a unique email or username -->
           <label class="label is-small">Username / Email</label>
-          <input class="input is-small is-rounded" type="text" v-model="form.usernameEmail">
+          <input class="input is-small is-rounded" type="text" v-model="form.usernameEmail" @keydown.enter="post"/>
           <div class="error">
             <p v-if="errors.usernameEmail" class="help is-danger">{{ errors.usernameEmail }}</p>
           </div>
@@ -23,7 +23,7 @@
       <div class="field">
         <div class="control">
           <label class="label is-small">Password</label>
-          <input class="input is-small is-rounded" type="password" v-model="form.password">
+          <input class="input is-small is-rounded" type="password" v-model="form.password" @keydown.enter="post"/>
           <div class="error">
             <p v-if="errors.password" class="help is-danger">{{ errors.password }}</p>
           </div>
@@ -31,7 +31,7 @@
       </div>
       <div class="field">
         <div class="control has-text-centered">
-          <button class="button is-info" @click="post">Sign In</button>
+          <button class="button is-info" @click="post" @keydown.enter="post">Sign In</button>
         </div>
       </div>
     </section>
