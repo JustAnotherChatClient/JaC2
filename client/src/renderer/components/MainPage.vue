@@ -7,20 +7,29 @@
           </ul>
       </div>
     </nav>
-    <div class='chat-area'>
+  <div class="columns">
+  <div class="column is-narrow ">
+    <div class="box" style="height: 100%; width: 60px">
+      <p class="title">Icons</p>
+    </div>
+  </div>
+  <div class="column is-flex is-paddingless">
+    <div class='chat-area' style="height: 83%">
     </div>
     <article class="media">
       <div class="media-content">
         <div class='container'>
           <div class="field">
             <p class="control">
-              <textarea class="textarea" placeholder="Message"></textarea>
+              <textarea class="textarea is-hovered is-flex" placeholder="Message" rows='3'></textarea>
             </p>
           </div>
         </div>
       </div>
     </article>
   </div>
+</div>
+</div>
 </template>
 
 <script>
@@ -35,7 +44,7 @@ export default {
 
 <style scoped>
 .tabs {
- margin-left: 5rem;
+  margin-left: 5rem;
 }
 
 .is-flex {
@@ -51,5 +60,9 @@ export default {
   margin: 0.5rem;
 }
 
+.media-content{
+  margin: 0.0rem;
+  padding: 0%;
+}
 </style>
 
