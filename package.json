@@ -6,7 +6,7 @@
   "license": "Private",
   "main": "./client/dist/electron/main.js",
   "scripts": {
-    "build": "node client/.electron-vue/build.js && electron-builder",
+    "build": "node client/.electron-vue/build.js && electron-builder -w",
     "build:dir": "node client/.electron-vue/build.js && electron-builder --dir",
     "build:clean": "cross-env BUILD_TARGET=clean node client/.electron-vue/build.js",
     "build:web": "cross-env BUILD_TARGET=web node client/.electron-vue/build.js",
@@ -63,10 +63,12 @@
     }
   },
   "dependencies": {
+    "all": "^0.0.0",
     "axios": "^0.16.1",
     "babel-polyfill": "^6.26.0",
     "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
+    "bootstrap": "^3.3.7",
     "bulma": "^0.7.1",
     "bunyan": "^1.8.12",
     "compression": "^1.7.2",
@@ -108,7 +110,7 @@
     "del": "^3.0.0",
     "devtron": "^1.4.0",
     "electron": "^1.7.5",
-    "electron-builder": "^19.19.1",
+    "electron-builder": "^20.27.1",
     "electron-debug": "^1.4.0",
     "electron-devtools-installer": "^2.2.0",
     "eslint": "^4.4.1",
