@@ -27,7 +27,7 @@
 var electron = require('electron')
 var currentWindow = electron.remote.getCurrentWindow()
 
-console.log(currentWindow.user)
+console.log('user', currentWindow.user)
 export default {
   name: 'main-page'
 }
