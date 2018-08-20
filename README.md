@@ -74,6 +74,47 @@ Bulma is available as a pure css framework.
 
 Docs are found here: https://bulma.io/documentation/
 
+### Amazon
+
+#### Setup
+
+Ensure you have Python and Pip installed
+
+```shell
+pip install awscli
+pip install awsebcli
+```
+
+#### Authentication
+
+Setup a ~/.aws/config file with in the following format:
+```
+[profile jac2]
+region = us-east-1
+aws_access_key_id = paste_key_here
+aws_secret_access_key = paste_secret_key_here
+```
+#### Docker Registry with ECR
+
+```shell
+# Login
+$(aws ecr get-login --no-include-email --region us-east-1)
+# Build
+yarn docker:build
+yarn docker:push
+```
+
+#### Elastic-beanstalk deployment
+
+```shell
+# Deploy dockerrun if any changes have been made
+yarn deploy:dockerrun
+# Update the elastic beanstalk environment
+yarn deploy:docker
+# Actually deploy the new version
+yarn deploy:eb
+```
+
 ### Git Strategy
 - branch develop into feature branch
 - submit Pull Request (PR) for feature branch into develop
