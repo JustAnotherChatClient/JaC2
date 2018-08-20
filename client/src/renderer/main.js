@@ -13,8 +13,7 @@ import VueSocketio from 'vue-socket.io'
 import Notify from 'vue2-notify'
 Vue.use(Notify, {
    itemClass: 'notification',
-  itemClass: 'alert col-3',
-  position: 'top-right'
+   position: 'top-right'
 })
 const types = {
   info: { itemClass: 'is-info' },
