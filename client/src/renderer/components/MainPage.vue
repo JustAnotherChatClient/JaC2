@@ -14,9 +14,14 @@
         <div class='container'>
           <div class="field">
             <p class="control">
-              <textarea class="textarea" placeholder="Message"></textarea>
+              <input type="text" v-model="message" />
             </p>
           </div>
+          <div class="field">
+        <div class="control has-text-centered">
+          <button @click="post" @keydown.enter="post">Send Message</button>
+        </div>
+      </div>
         </div>
       </div>
     </article>
@@ -26,16 +31,33 @@
 <script>
 var electron = require('electron')
 var currentWindow = electron.remote.getCurrentWindow()
-
-console.log('user', currentWindow.user)
 export default {
-  name: 'main-page'
+  name: 'main-page',
+  sockets: {
+    connect: function () {
+      console.log('socket connected')
+    },
+    chatMessage: function (val) {
+      console.log(val)
+    }
+  },
+  methods: {
+    async setUser () {
+      this.$socket.emit('set user', currentWindow.user.username)
+    },
+    async post () {
+      this.$socket.emit('chatMessage', this.message)
+    }
+  },
+  beforeMount () {
+    this.setUser()
+  }
 }
 </script>
 
 <style scoped>
 .tabs {
- margin-left: 5rem;
+  margin-left: 5rem;
 }
 
 .is-flex {
@@ -50,6 +72,5 @@ export default {
 .media {
   margin: 0.5rem;
 }
-
 </style>
 
