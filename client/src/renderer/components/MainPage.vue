@@ -37,11 +37,11 @@
             <div class="columns">
               <div class="column is-flex">
             <p class="control">
-              <textarea class="textarea is-hovered is-flex" placeholder="Message" rows='3'></textarea>
+              <textarea class="textarea is-hovered is-flex" placeholder="Message" rows='3' v-model="message"></textarea>
             </p>
             </div>
             <div class='column is-narrow'>
-              <a class="button is-large">
+              <a @click="post" @keydown.enter="post" class="button is-large">
     <span class="icon is-large">
       <i class="fas fa-angle-right fa-5x"></i>
     </span>
@@ -65,10 +65,27 @@
 <script>
 var electron = require('electron')
 var currentWindow = electron.remote.getCurrentWindow()
-
-console.log('user', currentWindow.user)
 export default {
-  name: 'main-page'
+  name: 'main-page',
+  sockets: {
+    connect: function () {
+      console.log('socket connected')
+    },
+    chatMessage: function (val) {
+      console.log(val)
+    }
+  },
+  methods: {
+    async setUser () {
+      this.$socket.emit('set user', currentWindow.user.username)
+    },
+    async post () {
+      this.$socket.emit('chatMessage', this.message)
+    }
+  },
+  beforeMount () {
+    this.setUser()
+  }
 }
 </script>
 
@@ -100,6 +117,5 @@ export default {
   padding: 4px;
   padding-bottom: 40px;
 }
-
 </style>
 
