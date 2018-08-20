@@ -8,7 +8,6 @@
           </a>
         </div>
         <div class='column'>
-          <h4 class="title is-4">Sign Up</h4>
         </div>
       </div>
     </section>
@@ -78,129 +77,129 @@
 <!-- This script below is used to swap out different components on the same browser window
      The same script also handles simple validation before connecting to the server -->
 <script>
-  export default {
-    props: ['currentView'],
-    methods: {
-      changeView (panel) {
-        this.$emit('panel-switch', panel)
-      },
-      checkInput () {
-        const { form, errors } = this
-        // username 4 chars, max 15
-        // password min 8, max 16 one cap, one lower, one number
+export default {
+  props: ['currentView'],
+  methods: {
+    changeView (panel) {
+      this.$emit('panel-switch', panel)
+    },
+    checkInput () {
+      const { form, errors } = this
+      // username 4 chars, max 15
+      // password min 8, max 16 one cap, one lower, one number
 
-        if (form.username) {
-          if (form.username.length < 4 || form.username.length > 15) {
-            errors.username = 'Username must be 4 to 16 characters.'
-          } else {
-            // no errors
-            errors.username = null
-          }
+      if (form.username) {
+        if (form.username.length < 4 || form.username.length > 15) {
+          errors.username = 'Username must be 4 to 16 characters.'
         } else {
-          errors.username = 'Username is required.'
+          // no errors
+          errors.username = null
         }
+      } else {
+        errors.username = 'Username is required.'
+      }
 
-        if (form.password) {
-          if (!(form.password.length >= 8 || form.password.length <= 16)) {
-            errors.password = 'Password must be 8 to 16 characters'
+      if (form.password) {
+        if (!(form.password.length >= 8 || form.password.length <= 16)) {
+          errors.password = 'Password must be 8 to 16 characters'
+        } else {
+          if (!/[A-Z]/.test(form.password)) {
+            errors.password = 'Password must have a capitol letter.'
           } else {
-            if (!/[A-Z]/.test(form.password)) {
-              errors.password = 'Password must have a capitol letter.'
+            if (!/[a-z]/.test(form.password)) {
+              errors.password = 'Password must contain a lowercase letter.'
             } else {
-              if (!/[a-z]/.test(form.password)) {
-                errors.password = 'Password must contain a lowercase letter.'
+              if (!/[0-9]/.test(form.password)) {
+                errors.password = 'Password must contain one number.'
               } else {
-                if (!/[0-9]/.test(form.password)) {
-                  errors.password = 'Password must contain one number.'
-                } else {
-                  errors.password = null
-                }
+                errors.password = null
               }
             }
           }
-        } else {
-          errors.password = 'Password is required.'
         }
-
-        if (form.confPass) {
-          if (form.password !== form.confPass) {
-            errors.confPass = 'Passwords must match.'
-          } else {
-            errors.confPass = null
-          }
-        } else {
-          errors.confPass = 'Confirm Password is required.'
-        }
-
-        if (form.email) {
-          if (!/\S+@\S+\.\S+/.test(form.email)) {
-            errors.email = 'Email format is mail@some.com.'
-          } else {
-            errors.email = null
-          }
-        } else {
-          errors.email = 'Email is required.'
-        }
-
-        if (!form.firstName) {
-          errors.firstName = 'First Name is required.'
-        } else {
-          errors.firstName = null
-        }
-
-        if (!form.lastName) {
-          errors.lastName = 'Last Name is required.'
-        } else {
-          errors.lastName = null
-        }
-
-        let errorCount = 0
-        Object.keys(errors).forEach(key => {
-          if (errors[key]) errorCount++
-        })
-
-        return errorCount === 0
-      },
-      async post () {
-        try {
-          if (this.checkInput()) {
-            const res = await this.$http.post(`${this.$config.backend}/api/auth/signup`, this.form)
-              .then(res => res.data)
-            if (res.status === 200) {
-              this.$notify(res.message, 'success')
-              Object.keys(this.form).forEach(key => {
-                this.form[key] = null
-              })
-            } else {
-              this.$notify(res.message, 'error')
-            }
-          }
-        } catch (err) {
-          this.$notify('An error occurred. Try again.', 'error')
-        }
+      } else {
+        errors.password = 'Password is required.'
       }
-    },
-    data () {
-      return {
-        form: {
-          username: null,
-          password: null,
-          email: null,
-          confPass: null,
-          firstName: null,
-          lastName: null
-        },
-        errors: {
-          username: null,
-          password: null,
-          email: null,
-          confPass: null,
-          firstName: null,
-          lastName: null
+
+      if (form.confPass) {
+        if (form.password !== form.confPass) {
+          errors.confPass = 'Passwords must match.'
+        } else {
+          errors.confPass = null
         }
+      } else {
+        errors.confPass = 'Confirm Password is required.'
+      }
+
+      if (form.email) {
+        if (!/\S+@\S+\.\S+/.test(form.email)) {
+          errors.email = 'Email format is mail@some.com.'
+        } else {
+          errors.email = null
+        }
+      } else {
+        errors.email = 'Email is required.'
+      }
+
+      if (!form.firstName) {
+        errors.firstName = 'First Name is required.'
+      } else {
+        errors.firstName = null
+      }
+
+      if (!form.lastName) {
+        errors.lastName = 'Last Name is required.'
+      } else {
+        errors.lastName = null
+      }
+
+      let errorCount = 0
+      Object.keys(errors).forEach(key => {
+        if (errors[key]) errorCount++
+      })
+
+      return errorCount === 0
+    },
+    async post () {
+      try {
+        if (this.checkInput()) {
+          const res = await this.$http.post(`${this.$config.backend}/api/auth/signup`, this.form)
+            .then(res => res.data)
+          if (res.status === 200) {
+            this.$notify('<div class="notification is-primary column is-3"> worked </div> ', 'info', {mode: 'html'})
+            Object.keys(this.form).forEach(key => {
+              this.form[key] = null
+            })
+          } else {
+            this.$notify('<div class="notification is-primary column is-3"> didnt work </div> ', 'info', {mode: 'html'})
+          }
+        }
+      } catch (err) {
+        this.$notify('An error occurred. Try again.', 'error')
+      }
+    }
+  },
+  data () {
+    return {
+      form: {
+        username: null,
+        password: null,
+        email: null,
+        confPass: null,
+        firstName: null,
+        lastName: null
+      },
+      errors: {
+        username: null,
+        password: null,
+        email: null,
+        confPass: null,
+        firstName: null,
+        lastName: null
       }
     }
   }
+}
 </script>
 
 <style scoped>

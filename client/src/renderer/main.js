@@ -11,8 +11,10 @@ import config from './config'
 
 import Notify from 'vue2-notify'
 Vue.use(Notify, {
-  itemClass: 'notification',
-  position: 'top-right'
+  itemClass: 'alert col-3',
+  position: 'top-right',
+  visibility: 1000,
+  entry: 'slideDown'
 })
 const types = {
   info: { itemClass: 'is-info' },
