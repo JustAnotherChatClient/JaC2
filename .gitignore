@@ -13,3 +13,4 @@ yarn-error.log
 server/dist
 terraform/credentials
 terraform/.terraform
+*.zip

@@ -27,9 +27,9 @@
     "slate": "rimraf node_modules && yarn",
     "postinstall": "npm run lint:fix",
     "prestart": "yarn",
-    "docker:buld": "docker build -t jac2 . && docker tag jac2:latest 812974957690.dkr.ecr.us-east-1.amazonaws.com/jac2:latest",
+    "docker:build": "docker build -t jac2 . && docker tag jac2:latest 812974957690.dkr.ecr.us-east-1.amazonaws.com/jac2:latest",
     "docker:push": "docker push 812974957690.dkr.ecr.us-east-1.amazonaws.com/jac2:latest",
-    "deploy:dockerrun": "zip dockerrun.zip dockerrun.aws.json && aws s3 cp dockerrun.zip s3://dockerrun.zip",
+    "deploy:dockerrun": "zip dockerrun.zip dockerrun.aws.json && aws s3 cp dockerrun.zip s3://jac2",
     "deploy:docker": "aws elasticbeanstalk create-application-version --application-name jac2-backend --version-label $(git rev-parse HEAD|head -c 6) --source-bundle S3Bucket=S3Key=dockerrun.zip",
     "deploy:eb": "aws elasticbeanstalk update-environment --environment-name jac2-backend-env --version-label $(git rev-parse HEAD|head -c 6)"
   },
