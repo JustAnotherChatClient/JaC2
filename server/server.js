@@ -55,10 +55,15 @@ server.use(bunyanExpressLogger({
 
 // database setup
 const db = mongoose.connection
-db.openUri(config.mongodb.uri, config.mongodb.options)
-db.on('error', err => {
-  serverLog.error({msg: err.message}, 'MongoDB connection error')
-  throw new Error(`unable to connect to database at ${config.mongodb.uri}. Error: ${err.message}`)
+server.use((req, res, next) => {
+  if (db.readyState !== 1) {
+    db.openUri(config.mongodb.uri, config.mongodb.options)
+    db.on('error', err => {
+      serverLog.error({msg: err.message}, 'MongoDB connection error')
+      throw new Error(`unable to connect to database at ${config.mongodb.uri}. Error: ${err.message}`)
+    })
+  }
+  next()
 })
 
 // Express setup
