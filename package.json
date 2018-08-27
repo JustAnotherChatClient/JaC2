@@ -10,8 +10,8 @@
     "build:dir": "node client/.electron-vue/build.js && electron-builder --dir",
     "build:clean": "cross-env BUILD_TARGET=clean node client/.electron-vue/build.js",
     "build:web": "cross-env BUILD_TARGET=web node client/.electron-vue/build.js",
-    "build:server": "cross-env NODE_ENV=production webpack --config server/webpack.config.js",
-    "server": "NODE_ENV=development BABEL_ENV=server nodemon server/index.js",
+    "build:server": "cd server && yarn build",
+    "server": "cd server && yarn start",
     "dev": "node client/.electron-vue/dev-runner.js",
     "start": "npm-run-all --parallel dev server",
     "start:prod": "NODE_ENV=production node index.js",
@@ -26,7 +26,13 @@
     "unit": "karma start client/test/unit/karma.conf.js",
     "slate": "rimraf node_modules && yarn",
     "postinstall": "npm run lint:fix",
-    "prestart": "yarn"
+    "prestart": "yarn && cd server && yarn",
+    "docker:login": "$(aws ecr get-login --no-include-email --region us-east-1)",
+    "build:docker": "cd server && docker build -t jac2 . && docker tag jac2:latest 812974957690.dkr.ecr.us-east-1.amazonaws.com/jac2:latest",
+    "docker:push": "docker push 812974957690.dkr.ecr.us-east-1.amazonaws.com/jac2:latest",
+    "deploy:dockerrun": "cd server && aws s3 cp dockerrun.aws.json s3://jac2",
+    "deploy:docker": "aws elasticbeanstalk create-application-version --application-name jac2-backend --version-label $(git rev-parse HEAD|head -c 6) --source-bundle S3Bucket=jac2,S3Key=dockerrun.aws.json",
+    "deploy:eb": "aws elasticbeanstalk update-environment --environment-name jac2-backend-server --version-label $(git rev-parse HEAD|head -c 6)"
   },
   "build": {
     "productName": "JaC2",
