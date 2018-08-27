@@ -5,8 +5,8 @@ WORKDIR ./app
 COPY ./package.json /app/
 COPY ./yarn.lock /app/
 COPY ./config /app/
-COPY ./server/index.js /app/
-COPY ./server/server.bundle.js /app/
+COPY ./index.js /app/
+COPY ./server.bundle.js /app/
 
 RUN yarn
 
