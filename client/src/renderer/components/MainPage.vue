@@ -1,16 +1,72 @@
 <template>
   <div class='is-flex'>
     <nav class="hero is-link is-small">
-      <div class="tabs is-boxed">
+      <div class="tabs is-toggle is-toggle-rounded is-small">
           <ul>
-            <li class="is-active"><a>Channel</a></li>
+            <li class="is-active">
+              <a>
+                <span class="icon is-small"><i class="fas fa-kiwi-bird" aria-hidden="true"></i></span>
+                <span>Channel 1</span>
+               </a>
+            </li>
+          </ul>
+          <ul>
+            <li class="is-active">
+              <a>
+                <span class="icon is-small"><i class="fas fa-motorcycle" aria-hidden="true"></i></span>
+                <span>Channel 2</span>
+               </a>
+            </li>
+          </ul>
+          <ul>
+            <li class="is-active">
+              <a>
+                <span class="icon is-small"><i class="fas fa-charging-station" aria-hidden="true"></i></span>
+                <span>Channel 3</span>
+               </a>
+            </li>
+          </ul>
+          <ul>
+            <li class="is-active">
+              <a>
+                <span class="icon is-small"><i class="fas fa-database" aria-hidden="true"></i></span>
+                <span>Channel 4</span>
+               </a>
+            </li>
+          </ul>
+          <ul>
+            <li class="is-active">
+              <a>
+                <span class="icon is-small"><i class="fas fa-money-bill" aria-hidden="true"></i></span>
+                <span>Channel 5</span>
+               </a>
+            </li>
           </ul>
       </div>
     </nav>
   <div class="columns">
-  <div class="column is-narrow ">
-    <div class="box" style="height: 100%; width: 60px">
-      <p class="title">Icons</p>
+  <div class="column is-narrow is-flex">
+    <!-- TODO: Add Scrolling to Icons -->
+    <!-- TODO: Add Links for Icons    -->
+    <div class="box" style="height: 100%; width: 90px">
+      <a>
+          <span class="icon is-large fa-3x"><i class="fas fa-money-bill" aria-hidden="true"></i></span>
+      </a>
+      <a>
+          <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-truck" aria-hidden="true"></i></span>
+      </a>
+      <a>
+          <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-car" aria-hidden="true"></i></span>
+      </a>
+      <a>
+          <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-motorcycle" aria-hidden="true"></i></span>
+      </a>
+      <a>
+          <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-calendar" aria-hidden="true"></i></span>
+      </a>
+      <a>
+          <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-clock" aria-hidden="true"></i></span>
+      </a>
     </div>
   </div>
   <div class="column is-flex is-paddingless">
@@ -36,15 +92,16 @@
           <div class="field">
             <div class="columns">
               <div class="column is-flex">
-            <p class="control">
-              <textarea class="textarea is-hovered is-flex" placeholder="Message" rows='3' v-model="message"></textarea>
-            </p>
+                <div class="field">
+            <div class="control">
+              <!-- TODO: Add Scrolling to TextArea -->
+              <textarea class="textarea is-hovered is-small" placeholder="Message..." rows='' v-model="message"></textarea>
             </div>
-            <div class='column is-narrow'>
+            </div>
+            </div>
+            <div class='column is-narrow is-2'>
               <a @click="post" @keydown.enter="post" class="button is-large">
-    <span class="icon is-large">
-      <i class="fas fa-angle-right fa-5x"></i>
-    </span>
+      <i class="fas fa-greater-than"></i>
   </a>
             </div>
             </div>
@@ -52,11 +109,6 @@
       </div>
       </div>
     </article>
-  </div>
-  <div class="column is-narrow ">
-    <div class="box" style="height: 100%; width: 60px;">
-      <p class="title">Spacer</p>
-    </div>
   </div>
 </div>
 </div>
@@ -91,7 +143,7 @@ export default {
 
 <style scoped>
 .tabs {
-  margin-left: 5rem;
+  margin-left: 7rem;
 }
 
 .is-flex {
@@ -101,7 +153,7 @@ export default {
 
 .chat-area {
   flex: 1 0 auto;
-  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 .media {
@@ -114,8 +166,9 @@ export default {
 }
 
 .textarea{
-  padding: 4px;
-  padding-bottom: 40px;
+  /* padding: 4px;
+  padding-bottom: 40px; */
+  overflow-y: visible;
 }
 </style>
 
