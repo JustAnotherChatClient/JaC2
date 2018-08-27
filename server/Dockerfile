@@ -4,7 +4,7 @@ WORKDIR ./app
 
 COPY ./package.json /app/
 COPY ./yarn.lock /app/
-COPY ./config /app/
+COPY ./config /app/config
 COPY ./index.js /app/
 COPY ./server.bundle.js /app/
 
