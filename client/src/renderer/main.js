@@ -6,13 +6,14 @@ import router from './router'
 import store from './store'
 import db from './datastore'
 import config from './config'
+import VueSocketio from 'vue-socket.io'
 // Import extra dependendies
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import Notify from 'vue2-notify'
 Vue.use(Notify, {
-  itemClass: 'notification',
-  position: 'top-right'
+   itemClass: 'notification',
+   position: 'top-right'
 })
 const types = {
   info: { itemClass: 'is-info' },
@@ -22,6 +23,9 @@ const types = {
 }
 Vue.$notify.setTypes(types)
 // Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+// Listen for sockets
+Vue.use(VueSocketio, 'http://localhost:3001')
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
