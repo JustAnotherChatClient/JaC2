@@ -2,15 +2,17 @@ FROM node
 
 WORKDIR ./app
 
-COPY ./package.json /app
-COPY ./config /JaC2/config
-COPY ./server/index.js /app/index.js
-COPY ./server/dist /app/dist
+COPY ./package.json /app/
+COPY ./yarn.lock /app/
+COPY ./config /app/
+COPY ./server/index.js /app/
+COPY ./server/dist /app/
 
-RUN npm install
+RUN yarn
 
 ENV NODE_ENV production
 ENV PORT 80
+
 EXPOSE 80
 
 CMD [ "node", "index.js" ]

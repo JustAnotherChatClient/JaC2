@@ -89,19 +89,24 @@ pip install awsebcli
 
 Setup a ~/.aws/config file with in the following format:
 ```
-[profile jac2]
+[default]
 region = us-east-1
-aws_access_key_id = paste_key_here
-aws_secret_access_key = paste_secret_key_here
+output = json
 ```
+And setup a ~/.aws/credentials file in the following format:
+```
+[default]
+aws_access_key_id = <your id here>
+aws_secret_access_key = <your key here>
+```
+
 #### Docker Registry with ECR
 
 ```shell
 # Login
-$(aws ecr get-login --no-include-email --region us-east-1)
-# Build
-yarn docker:build
-yarn docker:push
+yarn docker:login
+# Build & deploy
+./scripts/build_deploy.sh
 ```
 
 #### Elastic-beanstalk deployment
