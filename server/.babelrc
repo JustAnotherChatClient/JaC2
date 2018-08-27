@@ -1,0 +1,8 @@
+{
+  "comments": false,
+  "env": {
+    "server": {
+      "presets": ["es2015", "stage-0"]
+    }
+  }
+}
