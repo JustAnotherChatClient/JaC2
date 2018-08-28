@@ -18,6 +18,11 @@ export default new Router({
     {
       path: '*',
       redirect: '/main'
+    },
+    {
+      path: '/settings',
+      name: 'settings-page',
+      component: require('@/components/Settings').default
     }
   ]
 })

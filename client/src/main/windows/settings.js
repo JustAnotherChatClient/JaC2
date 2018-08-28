@@ -43,7 +43,7 @@ const init = (user) => {
   window.on('resize', function () {
     setTimeout(function () {
       var size = window.getSize()
-      window.setSize(size[0], parseInt(size[0] * 6 / 10))
+      window.setSize(size[0], parseInt(size[0] * 5 / 1))
     }, 0)
   })
 

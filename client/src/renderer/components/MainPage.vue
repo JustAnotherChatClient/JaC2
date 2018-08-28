@@ -1,7 +1,7 @@
 <template>
   <div class='is-flex'>
     <nav class="hero is-link is-small">
-      <div class="tabs is-toggle is-toggle-rounded is-small">
+      <div class="tabs is-toggle is-small">
           <ul>
             <li class="is-active">
               <a>
@@ -50,10 +50,12 @@
     <!-- TODO: Add Links for Icons    -->
     <div class="box" style="height: 100%; width: 90px">
       <a>
-          <span class="icon is-large fa-3x"><i class="fas fa-money-bill" aria-hidden="true"></i></span>
+        <router-link to="/settings">
+          <span class="icon is-large fa-3x"><i class="fas fa-cogs" aria-hidden="true"></i></span>
+        </router-link>
       </a>
       <a>
-          <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-truck" aria-hidden="true"></i></span>
+          <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-user-friends" aria-hidden="true"></i></span>
       </a>
       <a>
           <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-car" aria-hidden="true"></i></span>
@@ -72,11 +74,12 @@
   <div class="column is-flex is-paddingless">
     <div class='chat-area' style="height: 80%; padding-top: 50px">
       <div class="columns">
-        <div class="column is-narrow ">
+        <!-- <div class="column is-narrow ">
           <div class='chat_img' style="height: 50px; width: 50px"> <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test">
           </div>
-        </div>
-        <div class="column is-flex ">
+        </div> -->
+        <div class="column is-flex float-left">
+          <div class='chat_img' style="height: 50px; width: 50px"> <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test"></div>
           <h3 class="subtitle is-5"><b>Username</b></h3> 
           <p> Test Message </p>
         </div>
@@ -95,7 +98,7 @@
                 <div class="field">
             <div class="control">
               <!-- TODO: Add Scrolling to TextArea -->
-              <textarea class="textarea is-hovered is-small" placeholder="Message..." rows='' v-model="message"></textarea>
+              <textarea class="textarea is-hovered is-small is-clipped" placeholder="Message..." rows='' v-model="message"></textarea>
             </div>
             </div>
             </div>
