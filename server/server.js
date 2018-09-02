@@ -113,7 +113,6 @@ io.on('connection', function (socket) {
   })
   socket.on('chatMessage', function (msg) {
     let chatEntity = { username: socket.username, message: msg }
-    console.log(chatEntity)
     // here lets emmit json, with socket.username and message
     io.emit('chatMessage', chatEntity)
   })

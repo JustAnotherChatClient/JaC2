@@ -7,9 +7,7 @@
 
 <script>
 import disableScroll from 'disable-scroll'
-
-disableScroll.on()
-
+disableScroll.off()
 export default {
   name: 'jac2-client'
 }
