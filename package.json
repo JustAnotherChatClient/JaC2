@@ -25,7 +25,10 @@
     "test": "npm run unit && npm run e2e",
     "unit": "karma start client/test/unit/karma.conf.js",
     "slate": "rimraf node_modules && yarn",
+<<<<<<< HEAD
     "postinstall": "cd server && yarn",
+=======
+>>>>>>> 2cf8e08797d0d187c39c23ced8999fef7406ccd8
     "prestart": "yarn && cd server && yarn",
     "docker:login": "$(aws ecr get-login --no-include-email --region us-east-1)",
     "build:docker": "cd server && docker build -t jac2 . && docker tag jac2:latest 812974957690.dkr.ecr.us-east-1.amazonaws.com/jac2:latest",
