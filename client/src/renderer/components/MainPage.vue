@@ -7,64 +7,65 @@
           </ul>
       </div>
     </nav>
-  <div class="columns">
-  <div class="column is-narrow ">
-    <div class="box" style="height: 100%; width: 60px">
-      <p class="title">Icons</p>
-    </div>
-  </div>
-  <div class="column is-flex is-paddingless">
-    <div class='chat-area' style="height: 80%; padding-top: 50px">
-      <div class="columns">
-        <div class="column is-narrow ">
-          <div class='chat_img' style="height: 50px; width: 50px"> <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test">
+    <div class="columns">
+      <div class="column is-narrow ">
+        <div class="box" style="height: 100%; width: 60px">
+          <p class="title">Icons</p>
+        </div>
+      </div>
+      <div class="column is-flex is-paddingless">
+        <div class='chat-area' style="height: 80%; padding-top: 50px">
+          <div class="columns">
+            <div class="column is-narrow ">
+              <div class='chat_img' style="height: 50px; width: 50px">
+                <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test">
+              </div>
+            </div>
+            <div class="column is-flex ">
+              <h3 class="subtitle is-5"><b>Username</b></h3> 
+              <p> Test Message </p>
+            </div>
+            <div class="column is-flex is-paddingless has-text-centered"/>
           </div>
+          <!-- <div class='chat_img' style="height: 50px; width: 50px"> <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test"> <p> Test Message </p></div> -->
         </div>
-        <div class="column is-flex ">
-          <h3 class="subtitle is-5"><b>Username</b></h3> 
-          <p> Test Message </p>
-        </div>
-        <div class="column is-flex is-paddingless has-text-centered">
-          
+        <article class="media">
+          <div class="media-content">
+            <div class='container'>
+              <div class="field">
+                <div class="columns">
+                  <div class="column is-flex">
+                    <p class="control">
+                      <textarea class="textarea is-hovered is-flex" placeholder="Message" rows='3'></textarea>
+                    </p>
+                  </div>
+                  <div class='column is-narrow'>
+                    <a @click="post" @keydown.enter="post" class="button is-large">
+                      <span class="icon is-large">
+                        <i class="fas fa-angle-right fa-5x"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </article>
       </div>
-      <!-- <div class='chat_img' style="height: 50px; width: 50px"> <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test"> <p> Test Message </p></div> -->
-    </div>
-    <article class="media">
-      <div class="media-content">
-        <div class='container'>
-          <div class="field">
-            <div class="columns">
-              <div class="column is-flex">
-            <p class="control">
-              <textarea class="textarea is-hovered is-flex" placeholder="Message" rows='3' v-model="message"></textarea>
-            </p>
-            </div>
-            <div class='column is-narrow'>
-              <a @click="post" @keydown.enter="post" class="button is-large">
-    <span class="icon is-large">
-      <i class="fas fa-angle-right fa-5x"></i>
-    </span>
-  </a>
-            </div>
-            </div>
+      <div class="column is-narrow ">
+        <div class="box" style="height: 100%; width: 60px;">
+          <p class="title">Spacer</p>
         </div>
       </div>
-      </div>
-    </article>
-  </div>
-  <div class="column is-narrow ">
-    <div class="box" style="height: 100%; width: 60px;">
-      <p class="title">Spacer</p>
     </div>
   </div>
-</div>
-</div>
 </template>
 
 <script>
-var electron = require('electron')
-var currentWindow = electron.remote.getCurrentWindow()
+import electron from 'electron'
+import { mapActions } from 'vuex'
+const currentWindow = electron.remote.getCurrentWindow()
+const { user } = currentWindow
 export default {
   name: 'main-page',
   sockets: {
@@ -80,11 +81,18 @@ export default {
       this.$socket.emit('set user', currentWindow.user.username)
     },
     async post () {
-      this.$socket.emit('chatMessage', this.message)
-    }
+      // this.$socket.emit('chatMessage', this.message)
+    },
+    ...mapActions([
+      'getUsers'
+    ])
   },
   beforeMount () {
     this.setUser()
+  },
+  mounted () {
+    this.$store.commit('SET_USER', user)
+    this.getUsers()
   }
 }
 </script>

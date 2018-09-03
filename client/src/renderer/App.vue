@@ -7,7 +7,6 @@
 
 <script>
 import disableScroll from 'disable-scroll'
-
 disableScroll.on()
 
 export default {
