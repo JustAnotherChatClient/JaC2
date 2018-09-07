@@ -55,7 +55,9 @@
         </router-link>
       </a>
       <a>
+        <router-link to="/friends">
           <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-user-friends" aria-hidden="true"></i></span>
+        </router-link>
       </a>
       <a>
           <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-car" aria-hidden="true"></i></span>

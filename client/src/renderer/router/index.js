@@ -23,6 +23,11 @@ export default new Router({
       path: '/settings',
       name: 'settings-page',
       component: require('@/components/Settings').default
+    },
+    {
+      path: '/friends',
+      name: 'friends-page',
+      component: require('@/components/Friends').default
     }
   ]
 })
