@@ -1,5 +1,6 @@
 
 import User from '../models/user'
+import Channel from '../models/channel'
 
 const newUser = (req, res) => {
   const user = new User(req.body)
@@ -15,6 +16,22 @@ const getUsers = (req, res) => {
   User.getAllUsers()
     .then(getUsers => {
       res.status(200).json({ status: 200, data: getUsers, message: 'Ok' })
+    }).catch(err => {
+      res.status(500).json({ status: 500, message: err.message })
+    })
+}
+
+const getMemberChannels = (req, res) => {
+  const { id } = req.params
+  let channels = []
+  Channel.getAllChannels()
+    .then(memberChannels => {
+      memberChannels.forEach(channel => {
+        if (channel.members.indexOf(id) > -1) {
+          channels.push(channel)
+        }
+      })
+      res.status(200).json({ status: 200, data: channels, message: 'Ok' })
     }).catch(err => {
       res.status(500).json({ status: 500, message: err.message })
     })
@@ -50,5 +67,6 @@ export default {
   newUser,
   getUsers,
   getUserById,
-  updateUserById
+  updateUserById,
+  getMemberChannels
 }

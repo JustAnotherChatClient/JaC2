@@ -6,9 +6,13 @@ let ChannelSchema = new Schema({
   isActive: Boolean,
   createDate: { type: Date, default: Date.now },
   name: String,
-  members: [{
-    _id: { type: String, ref: 'User' }
-  }],
+  // members: [{
+  //   _id: { type: String, ref: 'User' }
+  // }],
+  members: {
+    type: [String],
+    ref: 'User'
+  },
   messages: [{
     _id: { type: String, ref: 'Message' }
   }]
