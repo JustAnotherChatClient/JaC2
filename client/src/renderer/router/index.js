@@ -28,6 +28,11 @@ export default new Router({
       path: '/friends',
       name: 'friends-page',
       component: require('@/components/Friends').default
+    },
+    {
+      path: '/AddFriend',
+      name: 'friends-page',
+      component: require('@/components/AddFriend').default
     }
   ]
 })

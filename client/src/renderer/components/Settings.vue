@@ -6,7 +6,7 @@
   <div class="column is-narrow is-flex">
     <!-- TODO: Add Scrolling to Icons -->
     <!-- TODO: Add Links for Icons    -->
-    <div class="box" style="height: 60%; width: 90px">
+    <div class="box" style="height: 65%; width: 90px">
       <router-link to="/main-page">
       <a>
           <span class="icon is-large fa-3x" style="padding-top: 50px"><i class="fas fa-angle-left" aria-hidden="true"></i></span>

@@ -12,7 +12,7 @@ const init = (user) => {
   /**
    * Initial window options
    */
-  const windowSettings = {}
+  const windowSettings = {resizable: false}
 
   switch (process.platform) {
     case 'darwin': {
@@ -37,15 +37,13 @@ const init = (user) => {
   window.on('closed', () => {
     window = null
   })
-  // Forces the window to be a specific aspect ratio
-  // TODO: Implement this on Launch
-  // TODO: Fix Flickering on Resize
-  window.on('resize', function () {
-    setTimeout(function () {
-      var size = window.getSize()
-      window.setSize(size[0], parseInt(size[0] * 6 / 10))
-    }, 0)
-  })
+  // This became too much of a hazard to implement properly
+  // window.on('resize', function () {
+  //   setTimeout(function () {
+  //     var size = window.getSize()
+  //     window.setSize(size[0], parseInt(size[0] * 6 / 10))
+  //   }, 0)
+  // })
 
   if (user) window.user = user
 }

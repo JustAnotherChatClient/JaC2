@@ -7,15 +7,17 @@
     <!-- TODO: Add Scrolling to Icons -->
     <!-- TODO: Add Links for Icons    -->
     <!-- style="padding-top: 100px" -->
-    <div class="box" style="height: 40%; width: 90px">
+    <div class="box" style="height: 35%; width: 90px">
       <router-link to="/main-page">
       <a>
           <span class="icon is-large fa-3x" style="padding-top: 50px"><i class="fas fa-angle-left" aria-hidden="true"></i></span>
       </a>
       </router-link>
+      <router-link to="/AddFriend">
       <a>
           <span class="icon is-large fa-3x" style="padding-top: 50px"><i class="fas fa-plus" aria-hidden="true"></i></span>
       </a>
+      </router-link>
     </div>
   </div>
   <div class='chat-area' style="height: 80%; padding-top: 50px">

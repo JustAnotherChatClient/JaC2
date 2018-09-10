@@ -59,18 +59,6 @@
           <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-user-friends" aria-hidden="true"></i></span>
         </router-link>
       </a>
-      <a>
-          <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-car" aria-hidden="true"></i></span>
-      </a>
-      <a>
-          <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-motorcycle" aria-hidden="true"></i></span>
-      </a>
-      <a>
-          <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-calendar" aria-hidden="true"></i></span>
-      </a>
-      <a>
-          <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-clock" aria-hidden="true"></i></span>
-      </a>
     </div>
   </div>
   <div class="column is-flex is-paddingless">

@@ -12,7 +12,7 @@ const init = (user) => {
   /**
    * Initial window options
    */
-  const windowSettings = {}
+  const windowSettings = {resizable: false}
 
   switch (process.platform) {
     case 'darwin': {
