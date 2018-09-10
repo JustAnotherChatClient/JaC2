@@ -65,6 +65,15 @@ UserSchema.statics.getAllUsers = () => {
   })
 }
 
+UserSchema.statics.getUserChannels = () => {
+  return new Promise((resolve, reject) => {
+    User.find((err, users) => {
+      if (err) reject(err)
+      else resolve(users)
+    })
+  })
+}
+
 UserSchema.statics.getUser = (id) => {
   return new Promise((resolve, reject) => {
     User.findById(id, (err, user) => {

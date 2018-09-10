@@ -4,10 +4,13 @@ dist/web/*
 client/build/*
 !client/build/icons
 coverage
-node_modules/
+**/node_modules/
 npm-debug.log
 npm-debug.log.*
 thumbs.db
 !.gitkeep
-yarn-error.log
-server/dist
+**/yarn-error.log
+server/server.bundle.js
+terraform/credentials
+terraform/.terraform
+*.zip

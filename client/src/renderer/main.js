@@ -12,10 +12,8 @@ import VueSocketio from 'vue-socket.io'
 
 import Notify from 'vue2-notify'
 Vue.use(Notify, {
-  itemClass: 'alert col-3',
-  position: 'top-right',
-  visibility: 1000,
-  entry: 'slideDown'
+  itemClass: 'notification',
+  position: 'top-right'
 })
 const types = {
   info: { itemClass: 'is-info' },
@@ -27,7 +25,7 @@ Vue.$notify.setTypes(types)
 // Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 // Listen for sockets
-Vue.use(VueSocketio, 'http://localhost:3001')
+Vue.use(VueSocketio, 'http://localhost:3000')
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios

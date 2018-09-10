@@ -1,4 +1,7 @@
+import { currentId } from 'async_hooks';
+
 <template>
+
   <div class='is-flex'>
     <nav class="hero is-link is-small">
       <div class="tabs is-toggle is-small">
@@ -69,13 +72,15 @@
           </div>
         </div> -->
         <div class="column is-flex float-left">
+          <div v-for="(message,i) in messages" :key="i">
           <div class='chat_img' style="height: 50px; width: 50px"> <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test"></div>
-          <h3 class="subtitle is-5"><b>Username</b></h3> 
-          <p> Test Message </p>
-        </div>
-        <div class="column is-flex is-paddingless has-text-centered">
-          
+          <h3 class="subtitle is-5"><b>{{message.username}}</b></h3> 
+              <p> {{message.content}} </p>
+            </div>
           </div>
+          <div class="column is-flex is-paddingless has-text-centered">
+            
+        </div>
       </div>
       <!-- <div class='chat_img' style="height: 50px; width: 50px"> <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test"> <p> Test Message </p></div> -->
     </div>
@@ -97,9 +102,14 @@
       <i class="fas fa-greater-than"></i>
   </a>
             </div>
+            <div class='column is-narrow is-2'>
+              <a @click="sendMessage" @keydown.enter="sendMessage" class="button is-large">
+      <i class="fas fa-greater-than"></i>
+  </a>
             </div>
+          </div>
         </div>
-      </div>
+        </div>
       </div>
     </article>
   </div>
@@ -108,8 +118,10 @@
 </template>
 
 <script>
-var electron = require('electron')
-var currentWindow = electron.remote.getCurrentWindow()
+import electron from 'electron'
+import { mapActions } from 'vuex'
+const currentWindow = electron.remote.getCurrentWindow()
+const { user } = currentWindow
 export default {
   name: 'main-page',
   sockets: {
@@ -117,24 +129,86 @@ export default {
       console.log('socket connected')
     },
     chatMessage: function (val) {
-      console.log(val)
+      const message = {
+        owner: user._id,
+        username: user.username,
+        content: this.message,
+        contentType: 'text',
+        isActive: true
+      }
+      this.$db.insert(message)
+      this.$store.commit('ADD_MESSAGE', message)
+    }
+  },
+  data: function () {
+    return {
+      channels: ['All']
+      message: ''
+    }
+  },
+  computed: {
+    messages: function () {
+      return this.$store.getters.getMessages
     }
   },
   methods: {
     async setUser () {
-      this.$socket.emit('set user', currentWindow.user.username)
+      this.$socket.emit('set user', user.username)
     },
     async post () {
+      // this.$socket.emit('chatMessage', this.message)
+    },
+    async sendMessage () {
+      const message = {
+        owner: user._id,
+        username: user.username,
+        content: this.message,
+        contentType: 'text',
+        isActive: true
+      }
+      this.$db.insert(message)
+      this.$store.commit('ADD_MESSAGE', message)
       this.$socket.emit('chatMessage', this.message)
-    }
+    },
+    async getUserChannels () {
+      try {
+        if (currentWindow.user) {
+          const res = await this.$http.get(`${this.$config.backend}/api/user/channels/${currentWindow.user._id}`
+          ).then(res => res.data)
+          if (res.status === 200) {
+            // SWING TO MAIN WINDOW PASSING res.user
+            this.channels = res.data
+            this.$notify(res.message, 'success')
+          } else {
+            this.$notify(res.message, 'error')
+          }
+        }
+      } catch (err) {
+        this.$notify('An error occurred. Try again.', 'error')
+        console.log(err)
+      }
+    },
   },
   beforeMount () {
     this.setUser()
+    this.getUserChannels()
+    ...mapActions(['getUsers', 'loadMessages'])
+  },
+  beforeMount () {
+    this.setUser()
+  },
+  mounted () {
+    this.$store.commit('SET_USER', user)
+    this.getUsers()
+    this.loadMessages(this.$db)
   }
 }
 </script>
 
 <style scoped>
+.final-item {
+  float:right;
+}
 .tabs {
   margin-left: 7rem;
 }
@@ -153,15 +227,18 @@ export default {
   margin: 0.5rem;
 }
 
-.media-content{
-  margin: 0.0rem;
+.media-content {
+  margin: 0rem;
   padding: 0%;
 }
 
-.textarea{
+.textarea {
   /* padding: 4px;
   padding-bottom: 40px; */
   overflow-y: visible;
 }
-</style>
 
+body {
+  overflow: hidden;
+}
+</style>

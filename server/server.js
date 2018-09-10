@@ -1,3 +1,4 @@
+
 import path from 'path'
 import http from 'http'
 
@@ -20,8 +21,8 @@ import router from './routes/router'
 // create server singleton
 const server = new Express()
 
-// Create socket server
-var socketServer = require('http').createServer(server)
+// Create app
+const app = http.createServer(server)
 
 // add config to every req via: req.locals.config
 server.locals.config = config
@@ -57,10 +58,15 @@ server.use(bunyanExpressLogger({
 
 // database setup
 const db = mongoose.connection
-db.openUri(config.mongodb.uri, config.mongodb.options)
-db.on('error', err => {
-  serverLog.error({ msg: err.message }, 'MongoDB connection error')
-  throw new Error(`unable to connect to database at ${config.mongodb.uri}. Error: ${err.message}`)
+server.use((req, res, next) => {
+  if (db.readyState !== 1) {
+    db.openUri(config.mongodb.uri, config.mongodb.options)
+    db.on('error', err => {
+      serverLog.error({msg: err.message}, 'MongoDB connection error')
+      throw new Error(`unable to connect to database at ${config.mongodb.uri}. Error: ${err.message}`)
+    })
+  }
+  next()
 })
 
 // Express setup
@@ -94,17 +100,21 @@ server.use((err, req, res, next) => {
 */
 
 // Declare socket.io server instance
-var io = require('socket.io')(socketServer)
+var io = require('socket.io')(app)
+
+// In controllers: const io = req.app.get('socket')
+server.set('socket', io)
 
 // Listen for chat clients
 io.on('connection', function (socket) {
-  console.log('a user connected', socket.username)
+  console.log('A socket has connected!', socket.id)
   socket.on('disconnect', function () {
-    console.log('user disconnected')
+    console.log('A socket disconnected!', socket.id)
   })
   socket.on('chatMessage', function (msg) {
-    console.log(socket.username + ': ' + msg)
-    io.emit('chatMessage', socket.username + ': ' + msg)
+    let chatEntity = { username: socket.username, message: msg }
+    // here lets emmit json, with socket.username and message
+    io.emit('chatMessage', chatEntity)
   })
   socket.on('set user', (username) => {
     // we store the username in the socket session for this client
@@ -117,47 +127,7 @@ io.on('connection', function (socket) {
   })
 })
 
-// Chatroom
-
-// io.on('connection', (socket) => {
-//   // when the client emits 'new message', this listens and executes
-//   socket.on('new message', (data) => {
-//     // we tell the client to execute 'new message'
-//     socket.broadcast.emit('new message', {
-//       username: socket.username,
-//       message: data
-//     })
-//     console.log(socket.username, data)
-//   })
-
-//   // when the client emits 'add user', this listens and executes
-//   socket.on('add user', (username) => {
-//     // we store the username in the socket session for this client
-//     socket.username = username
-//     // echo globally (all clients) that a person has connected
-//     socket.broadcast.emit('user joined', {
-//       username: socket.username
-//     })
-//     console.log(socket.username, 'Joined the chat')
-//   })
-
-//   // when the user disconnects.. perform this
-//   socket.on('disconnect', () => {
-//     // echo globally that this client has left
-//     socket.broadcast.emit('user left', {
-//       username: socket.username
-//     })
-//   })
-// })
-
-socketServer.listen(config.SOCKETIO_PORT, error => {
-  if (!error) {
-    serverLog.info(`Started JaC2 socket.io server on port ${config.SOCKETIO_PORT}`)
-    console.log(`Running JaC2 socket.io server on port ${config.SOCKETIO_PORT}`)
-  }
-})
-
-http.createServer(server).listen(config.PORT, error => {
+app.listen(config.PORT, error => {
   if (!error) {
     serverLog.info(`Started JaC2 API Server in ${process.env.NODE_ENV} environment on port ${config.PORT}`)
     console.log(`Running JaC2 API Server in ${process.env.NODE_ENV} environment on port ${config.PORT}`)
