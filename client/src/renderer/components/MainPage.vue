@@ -98,14 +98,9 @@ import { currentId } from 'async_hooks';
             </div>
             </div>
             <div class='column is-narrow is-2'>
-              <a @click="post" @keydown.enter="post" class="button is-large">
-      <i class="fas fa-greater-than"></i>
-  </a>
-            </div>
-            <div class='column is-narrow is-2'>
               <a @click="sendMessage" @keydown.enter="sendMessage" class="button is-large">
-      <i class="fas fa-greater-than"></i>
-  </a>
+                <i class="fas fa-greater-than"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -142,7 +137,7 @@ export default {
   },
   data: function () {
     return {
-      channels: ['All']
+      channels: ['All'],
       message: ''
     }
   },
@@ -188,14 +183,11 @@ export default {
         console.log(err)
       }
     },
-  },
-  beforeMount () {
-    this.setUser()
-    this.getUserChannels()
     ...mapActions(['getUsers', 'loadMessages'])
   },
   beforeMount () {
     this.setUser()
+    this.getUserChannels()
   },
   mounted () {
     this.$store.commit('SET_USER', user)

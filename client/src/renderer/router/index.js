@@ -31,7 +31,7 @@ export default new Router({
     },
     {
       path: '/AddFriend',
-      name: 'friends-page',
+      name: 'add-friends-page',
       component: require('@/components/AddFriend').default
     }
   ]
