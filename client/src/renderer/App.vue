@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <router-view/>
@@ -7,12 +6,7 @@
 
 <script>
 import disableScroll from 'disable-scroll'
-<<<<<<< HEAD
-disableScroll.on()
-
-=======
 disableScroll.off()
->>>>>>> 2cf8e08797d0d187c39c23ced8999fef7406ccd8
 export default {
   name: 'jac2-client'
 }
