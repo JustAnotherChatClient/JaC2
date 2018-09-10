@@ -5,29 +5,44 @@ import { currentId } from 'async_hooks';
   <div class='is-flex'>
     <nav class="hero is-link is-small">
       <div class="tabs is-toggle is-small">
-        <ul>
+          <ul>
             <li class="is-active">
               <a>
                 <span class="icon is-small"><i class="fas fa-kiwi-bird" aria-hidden="true"></i></span>
-                <span>All</span>
-              </a>
+                <span>Channel 1</span>
+               </a>
             </li>
           </ul>
-          <ul v-for="channel in channels" :key="channel._id">
+          <ul>
             <li class="is-active">
               <a>
-                <span class="icon is-small"><i class="fas fa-kiwi-bird" aria-hidden="true"></i></span>
-                <span>{{channel.name}}</span>
-              </a>
+                <span class="icon is-small"><i class="fas fa-motorcycle" aria-hidden="true"></i></span>
+                <span>Channel 2</span>
+               </a>
             </li>
           </ul>
-          <ul class="final-item">
+          <ul>
             <li class="is-active">
               <a>
-                
-                <input class="input is-small is-rounded" type="text" placeholder="Add Channel" v-model="channel" @keydown.enter="addChannel"/>
-                <span class="icon is-small"><i class="fas fa-kiwi-bird" aria-hidden="true"></i></span>
-              </a>
+                <span class="icon is-small"><i class="fas fa-charging-station" aria-hidden="true"></i></span>
+                <span>Channel 3</span>
+               </a>
+            </li>
+          </ul>
+          <ul>
+            <li class="is-active">
+              <a>
+                <span class="icon is-small"><i class="fas fa-database" aria-hidden="true"></i></span>
+                <span>Channel 4</span>
+               </a>
+            </li>
+          </ul>
+          <ul>
+            <li class="is-active">
+              <a>
+                <span class="icon is-small"><i class="fas fa-money-bill" aria-hidden="true"></i></span>
+                <span>Channel 5</span>
+               </a>
             </li>
           </ul>
       </div>
@@ -43,19 +58,9 @@ import { currentId } from 'async_hooks';
         </router-link>
       </a>
       <a>
+        <router-link to="/friends">
           <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-user-friends" aria-hidden="true"></i></span>
-      </a>
-      <a>
-          <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-car" aria-hidden="true"></i></span>
-      </a>
-      <a>
-          <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-motorcycle" aria-hidden="true"></i></span>
-      </a>
-      <a>
-          <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-calendar" aria-hidden="true"></i></span>
-      </a>
-      <a>
-          <span class="icon is-large fa-3x" style="padding-top: 75px"><i class="fas fa-clock" aria-hidden="true"></i></span>
+        </router-link>
       </a>
     </div>
   </div>
@@ -91,6 +96,11 @@ import { currentId } from 'async_hooks';
               <textarea class="textarea is-hovered is-small is-clipped" placeholder="Message..." rows='' v-model="message"></textarea>
             </div>
             </div>
+            </div>
+            <div class='column is-narrow is-2'>
+              <a @click="post" @keydown.enter="post" class="button is-large">
+      <i class="fas fa-greater-than"></i>
+  </a>
             </div>
             <div class='column is-narrow is-2'>
               <a @click="sendMessage" @keydown.enter="sendMessage" class="button is-large">
@@ -210,7 +220,7 @@ export default {
 
 .chat-area {
   flex: 1 0 auto;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 
 .media {

@@ -37,13 +37,15 @@ const init = (user) => {
   window.on('closed', () => {
     window = null
   })
-  // This became too much of a hazard to implement properly
-  // window.on('resize', function () {
-  //   setTimeout(function () {
-  //     var size = window.getSize()
-  //     window.setSize(size[0], parseInt(size[0] * 6 / 10))
-  //   }, 0)
-  // })
+  // Forces the window to be a specific aspect ratio
+  // TODO: Implement this on Launch
+  // TODO: Fix Flickering on Resize
+  window.on('resize', function () {
+    setTimeout(function () {
+      var size = window.getSize()
+      window.setSize(size[0], parseInt(size[0] * 5 / 1))
+    }, 0)
+  })
 
   if (user) window.user = user
 }
