@@ -25,7 +25,7 @@ import { currentId } from 'async_hooks';
             <li class="is-active">
               <a>
                 
-                <input class="input is-small is-rounded" type="text" placeholder="Add Channel" v-model="usernameEmail" @keydown.enter="post"/>
+                <input class="input is-small is-rounded" type="text" placeholder="Add Channel" v-model="channel" @keydown.enter="addChannel"/>
                 <span class="icon is-small"><i class="fas fa-kiwi-bird" aria-hidden="true"></i></span>
               </a>
             </li>
@@ -151,25 +151,6 @@ export default {
         console.log(err)
       }
     },
-    async addChannel () {
-      try {
-        if (currentWindow.user) {
-          const res = await this.$http.get(`${this.$config.backend}/api/user/channels/${currentWindow.user._id}`, {
-            
-          }).then(res => res.data)
-          if (res.status === 200) {
-            // SWING TO MAIN WINDOW PASSING res.user
-            this.channels = res.data
-            this.$notify(res.message, 'success')
-          } else {
-            this.$notify(res.message, 'error')
-          }
-        }
-      } catch (err) {
-        this.$notify('An error occurred. Try again.', 'error')
-        console.log(err)
-      }
-    }
   },
   beforeMount () {
     this.setUser()
