@@ -9,40 +9,16 @@ import { currentId } from 'async_hooks';
             <li class="is-active">
               <a>
                 <span class="icon is-small"><i class="fas fa-kiwi-bird" aria-hidden="true"></i></span>
-                <span>Channel 1</span>
-               </a>
+                <span>All</span>
+              </a>
             </li>
           </ul>
-          <ul>
+          <ul v-for="channel in channels" :key="channel._id">
             <li class="is-active">
               <a>
-                <span class="icon is-small"><i class="fas fa-motorcycle" aria-hidden="true"></i></span>
-                <span>Channel 2</span>
-               </a>
-            </li>
-          </ul>
-          <ul>
-            <li class="is-active">
-              <a>
-                <span class="icon is-small"><i class="fas fa-charging-station" aria-hidden="true"></i></span>
-                <span>Channel 3</span>
-               </a>
-            </li>
-          </ul>
-          <ul>
-            <li class="is-active">
-              <a>
-                <span class="icon is-small"><i class="fas fa-database" aria-hidden="true"></i></span>
-                <span>Channel 4</span>
-               </a>
-            </li>
-          </ul>
-          <ul>
-            <li class="is-active">
-              <a>
-                <span class="icon is-small"><i class="fas fa-money-bill" aria-hidden="true"></i></span>
-                <span>Channel 5</span>
-               </a>
+                <span class="icon is-small"><i class="fas fa-kiwi-bird" aria-hidden="true"></i></span>
+                <span>{{channel.name}}</span>
+              </a>
             </li>
           </ul>
       </div>
@@ -173,7 +149,6 @@ export default {
           if (res.status === 200) {
             // SWING TO MAIN WINDOW PASSING res.user
             this.channels = res.data
-            this.$notify(res.message, 'success')
           } else {
             this.$notify(res.message, 'error')
           }
