@@ -8,6 +8,7 @@ const routes = () => {
   router.get('/users', UserController.getUsers)
   router.get('/user/:id', UserController.getUserById)
   router.put('/user/:id', UserController.updateUserById)
+  router.get('/user/channels/:id', UserController.getMemberChannels)
 
   return router
 }

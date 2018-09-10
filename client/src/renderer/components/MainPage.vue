@@ -1,45 +1,33 @@
+import { currentId } from 'async_hooks';
+
 <template>
+
   <div class='is-flex'>
     <nav class="hero is-link is-small">
       <div class="tabs is-toggle is-small">
-          <ul>
+        <ul>
             <li class="is-active">
               <a>
                 <span class="icon is-small"><i class="fas fa-kiwi-bird" aria-hidden="true"></i></span>
                 <span>All</span>
-               </a>
+              </a>
             </li>
           </ul>
-          <ul>
+          <ul v-for="channel in channels" :key="channel._id">
             <li class="is-active">
               <a>
-                <span class="icon is-small"><i class="fas fa-motorcycle" aria-hidden="true"></i></span>
-                <span>Channel 1</span>
-               </a>
+                <span class="icon is-small"><i class="fas fa-kiwi-bird" aria-hidden="true"></i></span>
+                <span>{{channel.name}}</span>
+              </a>
             </li>
           </ul>
-          <ul>
+          <ul class="final-item">
             <li class="is-active">
               <a>
-                <span class="icon is-small"><i class="fas fa-charging-station" aria-hidden="true"></i></span>
-                <span>Channel 2</span>
-               </a>
-            </li>
-          </ul>
-          <ul>
-            <li class="is-active">
-              <a>
-                <span class="icon is-small"><i class="fas fa-database" aria-hidden="true"></i></span>
-                <span>Channel 4</span>
-               </a>
-            </li>
-          </ul>
-          <ul>
-            <li class="is-active">
-              <a>
-                <span class="icon is-small"><i class="fas fa-money-bill" aria-hidden="true"></i></span>
-                <span>Channel 3</span>
-               </a>
+                
+                <input class="input is-small is-rounded" type="text" placeholder="Add Channel" v-model="channel" @keydown.enter="addChannel"/>
+                <span class="icon is-small"><i class="fas fa-kiwi-bird" aria-hidden="true"></i></span>
+              </a>
             </li>
           </ul>
       </div>
@@ -144,6 +132,7 @@ export default {
   },
   data: function () {
     return {
+      channels: ['All']
       message: ''
     }
   },
@@ -171,6 +160,28 @@ export default {
       this.$store.commit('ADD_MESSAGE', message)
       this.$socket.emit('chatMessage', this.message)
     },
+    async getUserChannels () {
+      try {
+        if (currentWindow.user) {
+          const res = await this.$http.get(`${this.$config.backend}/api/user/channels/${currentWindow.user._id}`
+          ).then(res => res.data)
+          if (res.status === 200) {
+            // SWING TO MAIN WINDOW PASSING res.user
+            this.channels = res.data
+            this.$notify(res.message, 'success')
+          } else {
+            this.$notify(res.message, 'error')
+          }
+        }
+      } catch (err) {
+        this.$notify('An error occurred. Try again.', 'error')
+        console.log(err)
+      }
+    },
+  },
+  beforeMount () {
+    this.setUser()
+    this.getUserChannels()
     ...mapActions(['getUsers', 'loadMessages'])
   },
   beforeMount () {
@@ -185,6 +196,9 @@ export default {
 </script>
 
 <style scoped>
+.final-item {
+  float:right;
+}
 .tabs {
   margin-left: 7rem;
 }
