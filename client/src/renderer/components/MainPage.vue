@@ -67,15 +67,15 @@ import { currentId } from 'async_hooks';
           </div>
         </div> -->
         <div class="column is-flex float-left">
-          <div v-for="message in messages" :key="message.username">
+          <div v-for="(message,i) in messages" :key="i">
           <div class='chat_img' style="height: 50px; width: 50px"> <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test"></div>
           <h3 class="subtitle is-5"><b>{{message.username}}</b></h3> 
-          <p> {{message.message}} </p>
+              <p> {{message.content}} </p>
+            </div>
           </div>
+          <div class="column is-flex is-paddingless has-text-centered">
+            
         </div>
-        <div class="column is-flex is-paddingless has-text-centered">
-          
-          </div>
       </div>
       <!-- <div class='chat_img' style="height: 50px; width: 50px"> <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test"> <p> Test Message </p></div> -->
     </div>
@@ -97,9 +97,9 @@ import { currentId } from 'async_hooks';
       <i class="fas fa-greater-than"></i>
   </a>
             </div>
-            </div>
+          </div>
         </div>
-      </div>
+        </div>
       </div>
     </article>
   </div>
@@ -108,8 +108,10 @@ import { currentId } from 'async_hooks';
 </template>
 
 <script>
-var electron = require('electron')
-var currentWindow = electron.remote.getCurrentWindow()
+import electron from 'electron'
+import { mapActions } from 'vuex'
+const currentWindow = electron.remote.getCurrentWindow()
+const { user } = currentWindow
 export default {
   name: 'main-page',
   sockets: {
@@ -117,20 +119,45 @@ export default {
       console.log('socket connected')
     },
     chatMessage: function (val) {
-      this.messages.push(val)
+      const message = {
+        owner: user._id,
+        username: user.username,
+        content: this.message,
+        contentType: 'text',
+        isActive: true
+      }
+      this.$db.insert(message)
+      this.$store.commit('ADD_MESSAGE', message)
     }
   },
   data: function () {
     return {
-      messages: [],
       channels: ['All']
+      message: ''
+    }
+  },
+  computed: {
+    messages: function () {
+      return this.$store.getters.getMessages
     }
   },
   methods: {
     async setUser () {
-      this.$socket.emit('set user', currentWindow.user.username)
+      this.$socket.emit('set user', user.username)
+    },
+    async post () {
+      // this.$socket.emit('chatMessage', this.message)
     },
     async sendMessage () {
+      const message = {
+        owner: user._id,
+        username: user.username,
+        content: this.message,
+        contentType: 'text',
+        isActive: true
+      }
+      this.$db.insert(message)
+      this.$store.commit('ADD_MESSAGE', message)
       this.$socket.emit('chatMessage', this.message)
     },
     async getUserChannels () {
@@ -155,6 +182,15 @@ export default {
   beforeMount () {
     this.setUser()
     this.getUserChannels()
+    ...mapActions(['getUsers', 'loadMessages'])
+  },
+  beforeMount () {
+    this.setUser()
+  },
+  mounted () {
+    this.$store.commit('SET_USER', user)
+    this.getUsers()
+    this.loadMessages(this.$db)
   }
 }
 </script>
@@ -181,18 +217,18 @@ export default {
   margin: 0.5rem;
 }
 
-.media-content{
-  margin: 0.0rem;
+.media-content {
+  margin: 0rem;
   padding: 0%;
 }
 
-.textarea{
+.textarea {
   /* padding: 4px;
   padding-bottom: 40px; */
   overflow-y: visible;
 }
 
 body {
-  overflow:hidden;
+  overflow: hidden;
 }
 </style>

@@ -25,13 +25,17 @@
     "test": "npm run unit && npm run e2e",
     "unit": "karma start client/test/unit/karma.conf.js",
     "slate": "rimraf node_modules && yarn",
+<<<<<<< HEAD
+    "postinstall": "cd server && yarn",
+=======
+>>>>>>> 2cf8e08797d0d187c39c23ced8999fef7406ccd8
     "prestart": "yarn && cd server && yarn",
     "docker:login": "$(aws ecr get-login --no-include-email --region us-east-1)",
     "build:docker": "cd server && docker build -t jac2 . && docker tag jac2:latest 812974957690.dkr.ecr.us-east-1.amazonaws.com/jac2:latest",
     "docker:push": "docker push 812974957690.dkr.ecr.us-east-1.amazonaws.com/jac2:latest",
     "deploy:dockerrun": "cd server && aws s3 cp dockerrun.aws.json s3://jac2",
     "deploy:docker": "aws elasticbeanstalk create-application-version --application-name jac2-backend --version-label $(git rev-parse HEAD|head -c 6) --source-bundle S3Bucket=jac2,S3Key=dockerrun.aws.json",
-    "deploy:eb": "aws elasticbeanstalk update-environment --environment-name jac2-backend-server --version-label $(git rev-parse HEAD|head -c 6)"
+    "deploy:eb": "aws elasticbeanstalk update-environment --environment-name jac2-backend-env --version-label $(git rev-parse HEAD|head -c 6)"
   },
   "build": {
     "productName": "JaC2",
