@@ -3,14 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>jac2-client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <% if (htmlWebpackPlugin.options.nodeModules) { %>
       <!-- Add `node_modules/` to global paths so `require` works properly in development -->
       <script>
-        require('module').globalPaths.push('<%= htmlWebpackPlugin.options.nodeModules.replace(/\\/g, '\\\\') %>')
+        require('module').globalPaths.push('<%= htmlWebpackPlugin.options.nodeModules.replace(/\\/g, "\\\\") %>')
       </script>
     <% } %>
   </head>
-  <body>
+  <!-- <body style="-webkit-app-region: drag"> Can be used on MacOS but *NOT* on Linux--> 
+  <!-- <body style="-webkit-app-region: no-drag"> Can be used on MacOS and on Linux-->
+  <body style="-webkit-app-region: drag"> 
     <div id="app"></div>
     <!-- Set `__static` path to static files in production -->
     <script>

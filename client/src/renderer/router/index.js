@@ -11,8 +11,28 @@ export default new Router({
       component: require('@/components/LandingPage').default
     },
     {
+      path: '/main',
+      name: 'main-page',
+      component: require('@/components/MainPage').default
+    },
+    {
       path: '*',
-      redirect: '/'
+      redirect: '/main'
+    },
+    {
+      path: '/settings',
+      name: 'settings-page',
+      component: require('@/components/Settings').default
+    },
+    {
+      path: '/friends',
+      name: 'friends-page',
+      component: require('@/components/Friends').default
+    },
+    {
+      path: '/AddFriend',
+      name: 'friends-page',
+      component: require('@/components/AddFriend').default
     }
   ]
 })

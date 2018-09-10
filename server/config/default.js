@@ -1,6 +1,5 @@
-
 const PORT = process.env.PORT || 3000
-const SOCKETIO_PORT = 3001
+const SOCKETIO_PORT = process.env.SOCKETIO_PORT || 3001
 
 module.exports = {
   serverName: 'jac2-api',
@@ -14,9 +13,6 @@ module.exports = {
     }
   },
   tokenSecret: 'supersecrettoken',
-  electron: {
-    WIN_URL: 'http://localhost:9080'
-  },
   PORT,
   SOCKETIO_PORT
 }
