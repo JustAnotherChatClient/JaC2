@@ -1,18 +1,21 @@
 FROM node:8.11.3
 
-WORKDIR ./JaC2
+WORKDIR /JaC2
 
-COPY ./package.json /JaC2/
-COPY ./package-lock.json /JaC2/
-COPY ./config/ /JaC2/config/
-COPY ./server/index.js /JaC2/
-COPY ./server/dist/ /JaC2/dist/
+COPY ./server/package.json /JaC2/
+COPY ./server/yarn-lock.json /JaC2/
+COPY ./server/config/ /JaC2/config/
+COPY ./server/server.bundle.js /JaC2/
 
-RUN npm i npm@latest -g
-RUN npm install
+RUN mkdir logs
+RUN yarn
 
 ENV NODE_ENV production
+ENV MONGO_HOST mongodb://cluster0-shard-00-00-cedin.mongodb.net:27017,cluster0-shard-00-01-cedin.mongodb.net:27017,cluster0-shard-00-02-cedin.mongodb.net:27017/jac2
+ENV MONGO_PASS dMERJKTvBRe1XrNa
+ENV MONGO_USER jac2-server
 ENV PORT 80
+
 EXPOSE 80
 
-CMD [ "node", "index.js" ]
+CMD [ "node", "server.bundle.js" ]

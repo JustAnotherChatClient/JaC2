@@ -16,6 +16,8 @@
   import SignUpPanel from './LandingPage/SignUpPanel'
   import LoginPanel from './LandingPage/LoginPanel'
   import ForgotPasswordPanel from './LandingPage/ForgotPasswordPanel'
+  import disableScroll from 'disable-scroll'
+  disableScroll.on()
   export default {
     name: 'landing-page',
     components: { SignUpPanel, LoginPanel, ForgotPasswordPanel },

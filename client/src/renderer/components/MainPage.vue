@@ -1,8 +1,7 @@
-import { currentId } from 'async_hooks';
 
 <template>
 
-  <div class='is-flex'>
+  <div id="mainpage" class='is-flex'>
     <nav class="hero is-link is-small">
       <div class="tabs is-toggle is-small">
           <ul>
@@ -24,7 +23,7 @@ import { currentId } from 'async_hooks';
       </div>
     </nav>
   <div class="columns">
-  <div class="column is-narrow is-flex">
+  <div id='menu' class="column is-narrow is-flex">
     <!-- TODO: Add Scrolling to Icons -->
     <!-- TODO: Add Links for Icons    -->
     <div class="box" style="height: 100%; width: 90px">
@@ -47,15 +46,8 @@ import { currentId } from 'async_hooks';
           <div class='chat_img' style="height: 50px; width: 50px"> <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test">
           </div>
         </div> -->
-        <div class="column is-flex float-left">
-          <div v-for="(message,i) in messages" :key="i">
-          <div class='chat_img' style="height: 50px; width: 50px"> <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test"></div>
-          <h3 class="subtitle is-5"><b>{{message.username}}</b></h3> 
-              <p> {{message.content}} </p>
-            </div>
-          </div>
-          <div class="column is-flex is-paddingless has-text-centered">
-            
+        <div class="column is-flex float-left" style="overflow:auto">
+          <chat-box :messages="messages"/>  
         </div>
       </div>
       <!-- <div class='chat_img' style="height: 50px; width: 50px"> <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test"> <p> Test Message </p></div> -->
@@ -91,10 +83,12 @@ import { currentId } from 'async_hooks';
 <script>
 import electron from 'electron'
 import { mapActions } from 'vuex'
+import ChatBox from './MainPage/ChatBox'
 const currentWindow = electron.remote.getCurrentWindow()
 const { user } = currentWindow
 export default {
   name: 'main-page',
+  components: {ChatBox},
   sockets: {
     connect: function () {
       console.log('socket connected')
@@ -138,7 +132,6 @@ export default {
         isActive: true
       }
       this.$db.insert(message)
-      this.$store.commit('ADD_MESSAGE', message)
       this.$socket.emit('chatMessage', this.message)
     },
     async getUserChannels () {
@@ -208,4 +201,9 @@ export default {
 body {
   overflow: hidden;
 }
+.columns{
+  padding-top: 0;
+}
+
+#mainpage {margin: 0; height: 100%; overflow: hidden}
 </style>

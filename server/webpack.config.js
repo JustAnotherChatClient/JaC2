@@ -4,6 +4,7 @@ const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
   entry: [
+    'babel-register',
     'babel-polyfill',
     path.resolve(__dirname, 'server.js')
   ],
@@ -16,10 +17,9 @@ module.exports = {
     __dirname: true
   },
   resolve: {
-    extensions: [' ', '.js'],
+    extensions: ['.js'],
     modules: [
-      '../server',
-      '../node_modules'
+      './node_modules'
     ]
   },
   module: {

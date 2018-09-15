@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import disableScroll from 'disable-scroll'
-disableScroll.off()
 export default {
   name: 'jac2-client'
 }
