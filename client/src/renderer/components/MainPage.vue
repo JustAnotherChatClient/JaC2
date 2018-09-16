@@ -16,7 +16,7 @@
             <li class="is-active">
               <a>
                 <span class="icon is-small"><i class="fas fa-kiwi-bird" aria-hidden="true"></i></span>
-                <span>{{channel.name}}</span>
+                <span v-on:click="switchChannel($event, channel._id)">{{channel.name}}</span>
               </a>
             </li>
           </ul>
@@ -117,6 +117,13 @@ export default {
     }
   },
   methods: {
+    async switchChannel (event, channelId) {
+      // create namespace
+      var nsp = io.of('/' + channelId)
+      nsp.on('connection', function (socket) {
+        console.log('someone connected')
+      })
+    },
     async setUser () {
       this.$socket.emit('set user', user.username)
     },
