@@ -118,11 +118,7 @@ export default {
   },
   methods: {
     async switchChannel (event, channelId) {
-      // create namespace
-      var nsp = io.of('/' + channelId)
-      nsp.on('connection', function (socket) {
-        console.log('someone connected')
-      })
+      this.$socket.nsp = '/' + channelId
     },
     async setUser () {
       this.$socket.emit('set user', user.username)
