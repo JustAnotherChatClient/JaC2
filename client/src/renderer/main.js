@@ -25,7 +25,7 @@ Vue.$notify.setTypes(types)
 // Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 // Listen for sockets
-Vue.use(VueSocketio, 'http://localhost:3000')
+Vue.use(VueSocketio, 'http://jac2-backend-env.8i5z62wzmi.us-east-1.elasticbeanstalk.com')
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
