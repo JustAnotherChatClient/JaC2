@@ -14,7 +14,7 @@ batch_size = 128
 hidden_layer_size = 128
 
 # Where to save Tensorboard model summaries
-LOG_DIR = "logs/RNN_with_summaries"
+LOG_DIR = "Tensorflow/logs/RNN"
 
 # Create placeholders for inputs, labels
 _inputs = tf.placeholder(
