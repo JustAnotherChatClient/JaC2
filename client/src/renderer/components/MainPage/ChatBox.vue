@@ -1,9 +1,22 @@
 <template>
-  <div id="chatbox" >
-    <div v-for="(message,i) in messages" :key="i">
-      <div class='chat_img' style="height: 50px; width: 50px"> <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test"></div>
-      <h3 class="subtitle is-5"><b>{{message.username}}</b></h3> 
-        <p> {{message.content}} </p>
+  <div id="chatbox">
+    <div class="notification is-link" v-for="(message,i) in messages" :key="i">
+      <article class="media">
+        <figure class="media-left">
+          <div class='chat_img' style="height: 50px; width: 50px">
+            <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test">
+          </div>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>{{message.username}}</strong>
+              <br/>
+              {{message.content}} 
+            </p>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </template>
@@ -18,7 +31,8 @@ export default {
 <style>
 
 #chatbox {
-  overflow: scroll;
+  width: 80vw;
+  height: 80vh;
 }
 
 </style>

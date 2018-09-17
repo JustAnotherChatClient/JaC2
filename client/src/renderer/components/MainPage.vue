@@ -40,17 +40,8 @@
     </div>
   </div>
   <div class="column is-flex is-paddingless">
-    <div class='chat-area' style="height: 80%; padding-top: 50px">
-      <div class="columns">
-        <!-- <div class="column is-narrow ">
-          <div class='chat_img' style="height: 50px; width: 50px"> <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test">
-          </div>
-        </div> -->
-        <div class="column is-flex float-left" style="overflow:auto">
-          <chat-box :messages="messages"/>  
-        </div>
-      </div>
-      <!-- <div class='chat_img' style="height: 50px; width: 50px"> <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png" alt="test"> <p> Test Message </p></div> -->
+    <div class='chat-area'>
+      <chat-box :messages="messages"/>
     </div>
     <article class="media">
       <div class="media-content">
@@ -83,9 +74,12 @@
 <script>
 import electron from 'electron'
 import { mapActions } from 'vuex'
+import disableScroll from 'disable-scroll'
 import ChatBox from './MainPage/ChatBox'
 const currentWindow = electron.remote.getCurrentWindow()
 const { user } = currentWindow
+
+disableScroll.off()
 export default {
   name: 'main-page',
   components: {ChatBox},
@@ -101,6 +95,7 @@ export default {
         contentType: 'text',
         isActive: true
       }
+      console.log(val)
       this.$db.insert(message)
       this.$store.commit('ADD_MESSAGE', message)
     }
@@ -124,15 +119,8 @@ export default {
       // this.$socket.emit('chatMessage', this.message)
     },
     async sendMessage () {
-      const message = {
-        owner: user._id,
-        username: user.username,
-        content: this.message,
-        contentType: 'text',
-        isActive: true
-      }
-      this.$db.insert(message)
       this.$socket.emit('chatMessage', this.message)
+      this.message = ''
     },
     async getUserChannels () {
       try {
@@ -180,7 +168,9 @@ export default {
 
 .chat-area {
   flex: 1 0 auto;
-  overflow-y: scroll;
+  padding-top: 50px;
+  height: 80vh;
+  overflow: scroll;
 }
 
 .media {
@@ -192,18 +182,10 @@ export default {
   padding: 0%;
 }
 
-.textarea {
-  /* padding: 4px;
-  padding-bottom: 40px; */
-  overflow-y: visible;
-}
-
-body {
-  overflow: hidden;
-}
 .columns{
   padding-top: 0;
 }
-
-#mainpage {margin: 0; height: 100%; overflow: hidden}
+#mainpage {
+  overflow: hidden;
+}
 </style>
