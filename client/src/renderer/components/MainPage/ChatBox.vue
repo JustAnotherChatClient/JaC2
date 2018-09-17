@@ -32,7 +32,6 @@ export default {
 
 #chatbox {
   width: 80vw;
-  height: 80vh;
 }
 
 </style>

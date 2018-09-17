@@ -1,6 +1,6 @@
 import landing from './landing'
 import main from './main'
-import friends from './friends'
+import friends from './Friends'
 export default {
   landing,
   main,

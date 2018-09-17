@@ -52,12 +52,12 @@
                 <div class="field">
             <div class="control">
               <!-- TODO: Add Scrolling to TextArea -->
-              <textarea class="textarea is-hovered is-small is-clipped" placeholder="Message..." rows='' v-model="message"></textarea>
+              <textarea class="textarea is-hovered is-small is-clipped" @keydown.enter="sendMessage" placeholder="Message..." rows='' v-model="message"></textarea>
             </div>
             </div>
             </div>
             <div class='column is-narrow is-2'>
-              <a @click="sendMessage" @keydown.enter="sendMessage" class="button is-large">
+              <a @click="sendMessage" class="button is-large">
                 <i class="fas fa-greater-than"></i>
               </a>
             </div>
@@ -95,9 +95,11 @@ export default {
         contentType: 'text',
         isActive: true
       }
-      console.log(val)
       this.$db.insert(message)
       this.$store.commit('ADD_MESSAGE', message)
+      let div = document.querySelector('.chat-area')
+      let height = div.scrollHeight
+      div.scrollTop = height
     }
   },
   data: function () {
@@ -118,7 +120,8 @@ export default {
     async post () {
       // this.$socket.emit('chatMessage', this.message)
     },
-    async sendMessage () {
+    async sendMessage (e) {
+      e.preventDefault()
       this.$socket.emit('chatMessage', this.message)
       this.message = ''
     },
@@ -141,6 +144,13 @@ export default {
     },
     ...mapActions(['getUsers', 'loadMessages'])
   },
+  watch: {
+    messages: function (val, oldVal) {
+      let div = document.querySelector('.chat-area')
+      let height = div.scrollHeight
+      div.scrollTop = height
+    }
+  },
   beforeMount () {
     this.setUser()
     this.getUserChannels()
@@ -149,6 +159,13 @@ export default {
     this.$store.commit('SET_USER', user)
     this.getUsers()
     this.loadMessages(this.$db)
+  },
+  updated: function () {
+    this.$nextTick(function () {
+      let div = document.querySelector('.chat-area')
+      let height = div.scrollHeight
+      div.scrollTop = height
+    })
   }
 }
 </script>
@@ -168,8 +185,8 @@ export default {
 
 .chat-area {
   flex: 1 0 auto;
-  padding-top: 50px;
-  height: 80vh;
+  margin-top: 50px;
+  height: 75vh;
   overflow: scroll;
 }
 
