@@ -1,8 +1,8 @@
 # Create the Virtual Env
-virtualenv venv
+virtualenv Tensorflow/venv
 
 # Activate the Virtual Env
-. bin/activate
+. Tensorflow/venv/bin/activate
 
 # Install tensorflow
 pip install tensorflow
