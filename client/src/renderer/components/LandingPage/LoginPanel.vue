@@ -13,7 +13,7 @@
       <div class="field">
         <div class="control">
           <!-- User will be able to login with a unique email or username -->
-          <label class="label is-small">Username / Email</label>
+          <label class="label is-small">Username</label>
           <input class="input is-small is-rounded" type="text" v-model="form.usernameEmail" @keydown.enter="post"/>
           <div class="error">
             <p v-if="errors.usernameEmail" class="help is-danger">{{ errors.usernameEmail }}</p>
