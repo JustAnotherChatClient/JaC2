@@ -95,9 +95,9 @@ export default {
     },
     chatMessage: function (val) {
       const message = {
-        owner: user._id,
-        username: user.username,
-        content: this.message,
+        owner: val.username,
+        username: val.username,
+        content: val.message,
         contentType: 'text',
         isActive: true
       }
